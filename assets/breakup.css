@@ -839,11 +839,13 @@ button:disabled {
   display: grid;
   place-items: center;
   flex: none;
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   color: var(--rose);
   background: var(--rose-soft);
   border-radius: 50%;
+  font-size: 14px;
+  line-height: 1;
 }
 
 .choice__heart .icon {
@@ -1073,23 +1075,24 @@ button:disabled {
   border-radius: 20px;
 }
 
-.monologue-paragraph {
-  color: var(--ink-2);
+.monologue-sentence {
+  color: var(--ink);
   font-family: var(--font-serif);
-  font-size: clamp(18px, 1.7vw, 22px);
-  line-height: 1.95;
+  font-size: clamp(21px, 2vw, 25px);
+  font-weight: 600;
+  line-height: 1.8;
   animation: paragraphIn 0.6s var(--ease) both;
 }
 
-.monologue-paragraph + .monologue-paragraph {
-  margin-top: 14px;
-  padding-top: 14px;
+.monologue-sentence + .monologue-sentence {
+  margin-top: 11px;
+  padding-top: 11px;
   border-top: 1px solid rgba(167, 61, 94, 0.1);
 }
 
-.monologue-paragraph--accent {
+.monologue-sentence--accent {
   color: var(--rose-deep);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .monologue-footer {
@@ -1610,9 +1613,10 @@ body.monologue-mode .monologue-view {
     display: none;
   }
 
-  .monologue-paragraph {
-    font-size: 17px;
-    line-height: 1.9;
+  .monologue-sentence {
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.8;
   }
 
   .monologue-footer {

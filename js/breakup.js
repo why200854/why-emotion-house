@@ -226,11 +226,21 @@
   }
 
   function renderChoices(options) {
+    const symbols = {
+      listen: '🫂',
+      comfort: '🌧️',
+      action: '🧭',
+      steady: '🌱',
+      ground: '⏳',
+      honest: '💬',
+      humor: '☀️',
+      connect: '📱'
+    };
     dom.choices.innerHTML = '';
     options.forEach((option) => {
       const button = make('button', 'choice');
       button.type = 'button';
-      button.appendChild(make('span', 'choice__heart', '♥'));
+      button.appendChild(make('span', 'choice__heart', symbols[option.style] || '💗'));
       button.appendChild(make('span', 'choice__label', option.label));
       button.insertAdjacentHTML('beforeend', icon('bu-arrow', 'icon--small choice__arrow'));
       button.addEventListener('click', () => chooseOption(option));
@@ -355,33 +365,33 @@
     dom.monologueTitle.textContent = DATA.monologue.title;
     dom.monologueText.innerHTML = '';
     dom.monologueNext.querySelector('span').textContent = '继续';
-    renderMonologueParagraph(0);
+    renderMonologueSentence(0);
   }
 
-  function renderMonologueParagraph(index) {
-    const paragraphs = DATA.monologue.paragraphs;
-    if (index >= paragraphs.length) {
+  function renderMonologueSentence(index) {
+    const sentences = DATA.monologue.sentences;
+    if (index >= sentences.length) {
       showClosing();
       return;
     }
 
-    const paragraph = make('p', 'monologue-paragraph', paragraphs[index]);
-    if (index === paragraphs.length - 1) paragraph.classList.add('monologue-paragraph--accent');
-    dom.monologueText.appendChild(paragraph);
-    dom.monologueProgress.textContent = String(index + 1).padStart(2, '0') + ' / ' + String(paragraphs.length).padStart(2, '0');
-    dom.monologueNext.querySelector('span').textContent = index === paragraphs.length - 1 ? '听完了' : '继续';
+    const sentence = make('p', 'monologue-sentence', sentences[index]);
+    if (index === sentences.length - 1) sentence.classList.add('monologue-sentence--accent');
+    dom.monologueText.appendChild(sentence);
+    dom.monologueProgress.textContent = String(index + 1).padStart(2, '0') + ' / ' + String(sentences.length).padStart(2, '0');
+    dom.monologueNext.querySelector('span').textContent = index === sentences.length - 1 ? '听完了' : '继续';
     dom.monologueText.scrollTop = dom.monologueText.scrollHeight;
   }
 
   function advanceMonologue() {
     if (state.monoBusy) return;
-    const paragraphs = DATA.monologue.paragraphs;
-    if (state.monoIndex >= paragraphs.length - 1) {
+    const sentences = DATA.monologue.sentences;
+    if (state.monoIndex >= sentences.length - 1) {
       showClosing();
       return;
     }
     state.monoIndex += 1;
-    renderMonologueParagraph(state.monoIndex);
+    renderMonologueSentence(state.monoIndex);
   }
 
   function styleClosingLine() {

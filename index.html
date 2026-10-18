@@ -28,6 +28,11 @@
     <symbol id="icon-heart" viewBox="0 0 24 24">
       <path d="M12 20s-7.7-4.5-7.7-10A4.3 4.3 0 0 1 12 7.2 4.3 4.3 0 0 1 19.7 10c0 5.5-7.7 10-7.7 10Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
     </symbol>
+    <symbol id="icon-sunflower" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="3.3" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M12 3.5v3M12 17.5v3M3.5 12h3M17.5 12h3M6 6l2.1 2.1M15.9 15.9 18 18M18 6l-2.1 2.1M8.1 15.9 6 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M12 6.5c1.4 0 2.2 1.1 2.2 2.2M12 17.5c-1.4 0-2.2-1.1-2.2-2.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    </symbol>
     <symbol id="icon-phone" viewBox="0 0 24 24">
       <path d="M7.3 3.8 9 8.1 6.8 9.9c.9 2.5 2.8 4.4 5.3 5.3l1.8-2.2 4.2 1.7v3.2c0 .8-.7 1.5-1.5 1.4C9 18.7 5.3 15 4.4 7.4c-.1-.8.5-1.5 1.3-1.5h3.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
@@ -244,7 +249,7 @@
               <p class="eyebrow">核心区域</p>
               <h2 id="sceneTitle">情境对话交互区</h2>
             </div>
-            <span class="status-pill status-pill--accent">首个情境上线</span>
+            <span class="status-pill status-pill--accent">双情境上线</span>
           </header>
           <div class="construction-card construction-card--live">
             <div class="construction-card__badge">
@@ -267,6 +272,30 @@
             </div>
             <div class="construction-card__icon" aria-hidden="true">
               <svg class="icon" aria-hidden="true"><use href="#icon-heart"></use></svg>
+            </div>
+          </div>
+
+          <div class="construction-card construction-card--lonely">
+            <div class="construction-card__badge">
+              <svg class="icon icon--small" aria-hidden="true"><use href="#icon-sunflower"></use></svg>
+              可进入
+            </div>
+            <div class="construction-card__body">
+              <h3>孤独情境交互</h3>
+              <p>陪 Why 从灰色走到白色。不是靠朋友把孤独填满，而是学会一个人待着，也学会在相遇时不丢自己。</p>
+              <div class="construction-tags">
+                <span>8–10 分钟</span><span>四天分支</span><span>灰白插画</span><span>太阳花结局</span>
+              </div>
+              <div class="scene-launch-actions">
+                <a class="scene-cta scene-cta--sage" href="lonely.html">
+                  进入孤独情境
+                  <svg class="icon icon--small" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                </a>
+                <span class="scene-launch-more">更多情境 why哥正在开发中</span>
+              </div>
+            </div>
+            <div class="construction-card__icon" aria-hidden="true">
+              <svg class="icon" aria-hidden="true"><use href="#icon-sunflower"></use></svg>
             </div>
           </div>
         </section>
@@ -391,7 +420,7 @@
     </div>
     <section class="footer-policy" aria-label="免责声明">
       <strong>免责声明</strong>
-      <p>本网页为湖科大学生个人前端创意演示项目，仅作为情绪陪伴交互体验，不能替代专业心理咨询服务。若有严重心理困扰，请联系学校心理中心或者专业心理医疗机构。</p>
+      <p>本网页为学生个人创意情景交互演示项目，仅用于情绪故事体验、心理科普展示，不能替代专业心理咨询服务。如果有严重心理困扰，请联系学校心理中心或者专业心理医疗机构。</p>
     </section>
     <p class="footer-disclaimer">这不是心理咨询，不能替代专业帮助。若有立即危险，请拨打 120 / 110，或前往最近的急诊。</p>
     <p class="footer-credit">由 why哥（湖科大 王浩宇）发起 · 初版测试 · 所有选择只留在你的浏览器</p>
@@ -448,14 +477,12 @@
             <p class="eyebrow">个人介绍</p>
             <h3>关于王浩宇</h3>
           </div>
-          <span class="status-pill">还没填</span>
+          <span class="status-pill status-pill--live"><span class="online-dot"></span>持续更新</span>
         </div>
-        <p class="creator-intro__note" id="creatorIntroNote">随便点，反正都还没填。</p>
+        <div class="intro-lead" id="creatorIntroLead"></div>
+        <p class="creator-intro__note" id="creatorIntroNote">补充：项目会持续定期更新。</p>
         <div class="intro-grid" id="creatorIntroGrid"></div>
-        <div class="intro-placeholder hidden" id="creatorPlaceholder" aria-live="polite">
-          <span class="intro-placeholder__icon" aria-hidden="true">(￣o￣) zZ</span>
-          <p>王同志累了，还没填呢~（打哈欠）</p>
-        </div>
+        <div class="intro-contact" id="creatorContact" aria-label="王浩宇的联系方式"></div>
         <button class="text-btn" type="button" data-close-dialog>下次再聊</button>
       </section>
     </div>

@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#D9DDDA">
+  <meta name="description" content="why哥的情绪陪伴屋 · 孤独情境交互：陪 Why 从灰色走到白色，学会一个人待着，也学会在相遇时不丢自己。">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; media-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+  <title>孤独情境交互 · why哥的情绪陪伴屋</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/breakup.css">
+  <link rel="stylesheet" href="assets/lonely.css">
+</head>
+<body class="lonely-body">
+  <a class="skip-link" href="#lonelyStory">跳到故事内容</a>
+
+  <svg class="svg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="lo-house" viewBox="0 0 24 24">
+      <path d="M4 10.3 12 4l8 6.3V20H4V10.3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M9.5 20v-5.5h5V20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="lo-arrow" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="lo-sunflower" viewBox="0 0 64 64">
+      <g fill="currentColor" opacity="0.9">
+        <ellipse cx="32" cy="12" rx="5" ry="10"/>
+        <ellipse cx="32" cy="52" rx="5" ry="10"/>
+        <ellipse cx="12" cy="32" rx="10" ry="5"/>
+        <ellipse cx="52" cy="32" rx="10" ry="5"/>
+        <ellipse cx="18" cy="18" rx="5" ry="9" transform="rotate(-45 18 18)"/>
+        <ellipse cx="46" cy="18" rx="5" ry="9" transform="rotate(45 46 18)"/>
+        <ellipse cx="18" cy="46" rx="5" ry="9" transform="rotate(45 18 46)"/>
+        <ellipse cx="46" cy="46" rx="5" ry="9" transform="rotate(-45 46 46)"/>
+      </g>
+      <circle cx="32" cy="32" r="11" fill="#8b5c32"/>
+      <circle cx="29" cy="29" r="2" fill="#bb8d58"/>
+      <circle cx="36" cy="34" r="1.6" fill="#bb8d58"/>
+    </symbol>
+    <symbol id="lo-sun" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="13" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M32 5v8M32 51v8M5 32h8M51 32h8M13 13l6 6M45 45l6 6M51 13l-6 6M19 45l-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+
+  <div class="ambient-art" aria-hidden="true">
+    <span class="ambient-art__wash ambient-art__wash--one"></span>
+    <span class="ambient-art__wash ambient-art__wash--two"></span>
+    <svg class="deco-sun"><use href="#lo-sun"></use></svg>
+    <svg class="deco-flower deco-flower--one"><use href="#lo-sunflower"></use></svg>
+    <svg class="deco-flower deco-flower--two"><use href="#lo-sunflower"></use></svg>
+    <span class="drifting-seed drifting-seed--one"></span>
+    <span class="drifting-seed drifting-seed--two"></span>
+    <span class="drifting-seed drifting-seed--three"></span>
+  </div>
+
+  <header class="scene-topbar">
+    <a class="scene-brand" href="index.html">
+      <span class="scene-brand__mark"><svg class="icon" aria-hidden="true"><use href="#lo-house"></use></svg></span>
+      <span>
+        <strong>why哥的情绪陪伴屋</strong>
+        <small>孤独情境交互 · 情景故事体验</small>
+      </span>
+    </a>
+    <div class="scene-topbar__actions">
+      <span class="duration-pill">8–10 分钟</span>
+      <a class="back-link" href="index.html">返回主界面</a>
+    </div>
+  </header>
+
+  <main class="scene-main">
+    <section class="story-view" id="lonelyStory" aria-label="孤独情境故事">
+      <div class="story-visual">
+        <div class="day-meta">
+          <span class="day-meta__day" id="dayLabel">第 1 天</span>
+          <span class="day-meta__dot"></span>
+          <span id="sceneTime">21:10</span>
+          <span class="day-meta__dot"></span>
+          <span id="scenePlace">宿舍</span>
+        </div>
+
+        <div class="lonely-visual" id="lonelyVisual" data-scene="alone" data-tone="gray1">
+          <span class="lonely-visual__glow"></span>
+          <svg class="lonely-svg" viewBox="0 0 640 380" preserveAspectRatio="xMidYMid slice" role="img" aria-label="一个男孩从独自坐在草地上，到抬头、起身、遇见手持太阳花的女孩，最后相拥并目送太阳花飞向天空">
+            <defs>
+              <linearGradient id="lo-ground" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="var(--ground-top)"></stop>
+                <stop offset="1" stop-color="var(--ground-bottom)"></stop>
+              </linearGradient>
+              <radialGradient id="lo-sun-glow">
+                <stop offset="0" stop-color="#fff6d9" stop-opacity="0.9"></stop>
+                <stop offset="1" stop-color="#fff6d9" stop-opacity="0"></stop>
+              </radialGradient>
+            </defs>
+
+            <circle class="lonely-sun" cx="520" cy="68" r="78" fill="url(#lo-sun-glow)"></circle>
+            <circle class="lonely-sun-core" cx="520" cy="68" r="24"></circle>
+            <g class="cloud cloud--one">
+              <path d="M96 78 C106 62 128 62 139 75 C151 67 169 76 169 92 L91 92 C85 86 88 80 96 78Z"></path>
+            </g>
+            <g class="cloud cloud--two">
+              <path d="M340 112 C349 99 367 99 376 110 C387 103 402 111 402 124 L334 124 C329 119 332 114 340 112Z"></path>
+            </g>
+
+            <path class="lonely-ground" d="M0 292 Q160 275 320 292 T640 288 L640 380 L0 380Z" fill="url(#lo-ground)"></path>
+            <path class="lonely-grass-line" d="M0 292 Q160 275 320 292 T640 288"></path>
+            <g class="grass-tufts" aria-hidden="true">
+              <path d="M52 300c2-12 5-16 8-19M55 300c0-9 4-14 8-17M60 300c-1-6-4-10-7-12"></path>
+              <path d="M142 298c2-10 5-14 8-17M145 298c0-8 4-12 8-15M150 298c-1-5-4-9-7-11"></path>
+              <path d="M548 295c2-10 5-14 8-17M551 295c0-8 4-12 8-15M556 295c-1-5-4-9-7-11"></path>
+              <path d="M604 299c2-11 5-15 8-18M607 299c0-9 4-13 8-16"></path>
+            </g>
+
+            <g class="figure boy boy--sitting">
+              <ellipse class="figure-shadow" cx="0" cy="6" rx="43" ry="7"></ellipse>
+              <path class="boy-body" d="M-24 -8 C-29 -38 -20 -62 0 -66 C20 -62 29 -38 24 -8 C14 0 -14 0 -24 -8Z"></path>
+              <path class="boy-legs" d="M-27 -8 C-41 -8 -44 4 -33 9 L-8 9 C-2 9 0 4 -6 0 L-27 -8Z"></path>
+              <path class="boy-legs" d="M2 -8 C-2 -2 2 9 10 9 L33 9 C44 4 41 -8 27 -8Z"></path>
+              <ellipse class="boy-shoe" cx="-31" cy="8" rx="10" ry="4"></ellipse>
+              <ellipse class="boy-shoe" cx="31" cy="8" rx="10" ry="4"></ellipse>
+              <path class="boy-arm boy-arm--left" d="M-20 -52 C-38 -40 -38 -16 -22 -6 C-16 -2 -8 -2 -2 -4"></path>
+              <path class="boy-arm boy-arm--right" d="M20 -52 C38 -40 38 -16 22 -6 C16 -2 8 -2 2 -4"></path>
+              <circle class="boy-hand" cx="-20" cy="-7" r="5"></circle>
+              <circle class="boy-hand" cx="20" cy="-7" r="5"></circle>
+              <circle class="boy-head" cx="0" cy="-82" r="17"></circle>
+              <path class="boy-hair" d="M-17 -85 C-15 -106 15 -106 17 -85 C8 -96 -8 -96 -17 -85Z"></path>
+              <path class="boy-face" d="M-7 -80 C-4 -77 -1 -77 2 -80"></path>
+            </g>
+
+            <g class="figure boy boy--standing">
+              <ellipse class="figure-shadow" cx="0" cy="4" rx="31" ry="6"></ellipse>
+              <path class="boy-legs" d="M-13 0 L-10 -50 L-2 -50 L-4 0Z M2 0 L4 -50 L12 -50 L15 0Z"></path>
+              <path class="boy-body" d="M-20 -48 C-23 -79 -15 -98 0 -100 C15 -98 23 -79 20 -48Z"></path>
+              <path class="boy-arm boy-arm--left" d="M-19 -86 C-31 -74 -32 -58 -26 -45"></path>
+              <path class="boy-arm boy-arm--right" d="M19 -86 C31 -74 32 -58 26 -45"></path>
+              <circle class="boy-head" cx="0" cy="-115" r="15"></circle>
+              <path class="boy-hair" d="M-15 -118 C-13 -137 13 -137 15 -118 C8 -127 -8 -127 -15 -118Z"></path>
+              <path class="boy-face" d="M-7 -113 C-4 -110 -1 -110 2 -113"></path>
+            </g>
+
+            <g class="figure girl">
+              <ellipse class="figure-shadow" cx="0" cy="4" rx="33" ry="6"></ellipse>
+              <path class="girl-legs" d="M-10 0 L-8 -44 L-2 -44 L-1 0Z M2 0 L4 -44 L10 -44 L13 0Z"></path>
+              <path class="girl-dress" d="M-20 -46 L20 -46 L30 -4 L-30 -4Z"></path>
+              <path class="girl-body" d="M-17 -47 C-19 -75 -11 -91 0 -93 C11 -91 19 -75 17 -47Z"></path>
+              <path class="girl-arm girl-arm--left" d="M-15 -80 C-28 -70 -28 -56 -21 -43"></path>
+              <path class="girl-arm girl-arm--right" d="M15 -80 C28 -70 30 -56 23 -43"></path>
+              <circle class="girl-head" cx="0" cy="-108" r="14"></circle>
+              <path class="girl-hair" d="M-15 -111 C-14 -132 15 -132 16 -111 C15 -94 11 -89 9 -86 L4 -98 L-4 -86 C-10 -91 -14 -98 -15 -111Z"></path>
+              <g class="girl-flower" transform="translate(25 -53)">
+                <circle cx="0" cy="0" r="5" fill="#8b5c32"></circle>
+                <g fill="#e6b94f">
+                  <ellipse cx="0" cy="-10" rx="3" ry="6"></ellipse>
+                  <ellipse cx="0" cy="10" rx="3" ry="6"></ellipse>
+                  <ellipse cx="-10" cy="0" rx="6" ry="3"></ellipse>
+                  <ellipse cx="10" cy="0" rx="6" ry="3"></ellipse>
+                  <ellipse cx="-7" cy="-7" rx="3" ry="6" transform="rotate(-45 -7 -7)"></ellipse>
+                  <ellipse cx="7" cy="-7" rx="3" ry="6" transform="rotate(45 7 -7)"></ellipse>
+                  <ellipse cx="-7" cy="7" rx="3" ry="6" transform="rotate(45 -7 7)"></ellipse>
+                  <ellipse cx="7" cy="7" rx="3" ry="6" transform="rotate(-45 7 7)"></ellipse>
+                </g>
+              </g>
+            </g>
+
+            <g class="hug-arms">
+              <path d="M-15 -76 C-40 -66 -45 -40 -18 -31"></path>
+              <path d="M15 -76 C40 -66 45 -40 18 -31"></path>
+            </g>
+
+            <g class="floating-flower" aria-hidden="true">
+              <circle cx="0" cy="0" r="6" fill="#8b5c32"></circle>
+              <g fill="#e6b94f">
+                <ellipse cx="0" cy="-13" rx="4" ry="8"></ellipse>
+                <ellipse cx="0" cy="13" rx="4" ry="8"></ellipse>
+                <ellipse cx="-13" cy="0" rx="8" ry="4"></ellipse>
+                <ellipse cx="13" cy="0" rx="8" ry="4"></ellipse>
+                <ellipse cx="-9" cy="-9" rx="4" ry="8" transform="rotate(-45 -9 -9)"></ellipse>
+                <ellipse cx="9" cy="-9" rx="4" ry="8" transform="rotate(45 9 -9)"></ellipse>
+                <ellipse cx="-9" cy="9" rx="4" ry="8" transform="rotate(45 -9 9)"></ellipse>
+                <ellipse cx="9" cy="9" rx="4" ry="8" transform="rotate(-45 9 9)"></ellipse>
+              </g>
+            </g>
+          </svg>
+
+          <p class="lonely-caption" id="lonelyCaption">一个人待着，也是在和自己相处。</p>
+        </div>
+
+        <div class="day-progress" id="dayProgress" aria-label="故事进度"></div>
+        <p class="scene-note" id="sceneNote">周末的走廊比平时安静。</p>
+      </div>
+
+      <div class="dialogue-card">
+        <div class="dialogue-head">
+          <span class="text-avatar text-avatar--why" aria-hidden="true">why</span>
+          <div class="dialogue-head__copy">
+            <strong>Why</strong>
+            <small id="speakerState">孤独第 1 天 · 有点空</small>
+          </div>
+          <span class="online-state"><i></i>在线</span>
+        </div>
+
+        <div class="dialogue-messages" id="dialogueMessages" role="log" aria-live="polite" aria-label="Why 的对话"></div>
+
+        <div class="typing hidden" id="typing" aria-label="Why 正在打字">
+          <span></span><span></span><span></span>
+          <em>Why 正在打字…</em>
+        </div>
+
+        <div class="choices" id="choices" role="group" aria-label="选择你的回应"></div>
+
+        <button class="next-btn hidden" id="nextBtn" type="button">
+          <span>继续</span>
+          <svg class="icon icon--small" aria-hidden="true"><use href="#lo-arrow"></use></svg>
+        </button>
+
+        <p class="dialogue-hint">你是这场对话的见证人。你的回应不会把孤独“消灭”，但会陪他换一种方式待着。</p>
+      </div>
+    </section>
+
+    <section class="monologue-view hidden" id="monologueView" aria-label="王同志的道理独白">
+      <div class="monologue-card">
+        <div class="monologue-head">
+          <span class="text-avatar text-avatar--wang" aria-hidden="true">why</span>
+          <div>
+            <strong>王同志</strong>
+            <small>创作者 / 旁白</small>
+          </div>
+          <span class="monologue-head__tag">说给 Why，也说给你</span>
+        </div>
+        <p class="monologue-kicker" id="monologueKicker">给 Why，也给正在看的你</p>
+        <h2 id="monologueTitle">一个人，也可以好好待着</h2>
+        <div class="monologue-text" id="monologueText" role="log" aria-live="polite"></div>
+        <div class="monologue-footer">
+          <span id="monologueProgress">01 / 09</span>
+          <button class="next-btn" id="monologueNext" type="button">
+            <span>继续</span>
+            <svg class="icon icon--small" aria-hidden="true"><use href="#lo-arrow"></use></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing-view hidden" id="closingView" aria-label="故事闭幕">
+      <div class="closing-sun" aria-hidden="true"></div>
+      <div class="closing-flower" aria-hidden="true">
+        <svg viewBox="0 0 64 64"><use href="#lo-sunflower"></use></svg>
+      </div>
+      <p class="closing-eyebrow" id="closingEyebrow">第 4 天 · 傍晚</p>
+      <h2 id="closingTitle">这一阵风，先吹到这里。</h2>
+      <div class="closing-lines" id="closingLines"></div>
+      <p class="closing-thanks" id="closingThanks">谢谢你愿意做这个见证人。</p>
+      <button class="leave-btn hidden" id="leaveBtn" type="button">离开</button>
+      <p class="closing-note">你会回到 why哥的情绪陪伴屋。</p>
+    </section>
+  </main>
+
+  <div class="day-banner hidden" id="dayBanner" aria-live="polite">
+    <span class="day-banner__line"></span>
+    <p class="day-banner__day" id="bannerDay">第 1 天</p>
+    <p class="day-banner__time" id="bannerTime">21:10 · 宿舍</p>
+    <p class="day-banner__place" id="bannerPlace">周末的走廊比平时安静。</p>
+    <span class="day-banner__flower" aria-hidden="true"><svg class="icon"><use href="#lo-sunflower"></use></svg></span>
+  </div>
+
+  <footer class="scene-disclaimer">
+    <strong>免责声明</strong>
+    <span id="disclaimerText">本网页为学生个人创意情景交互演示项目，仅用于情绪故事体验、心理科普展示，不能替代专业心理咨询服务。如果有严重心理困扰，请联系学校心理中心或者专业心理医疗机构。</span>
+  </footer>
+
+  <script src="js/lonely-data.js" defer></script>
+  <script src="js/lonely.js" defer></script>
+</body>
+</html>

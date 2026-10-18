@@ -186,8 +186,9 @@
     dom.creatorOptions = $('#creatorOptions');
     dom.creatorIntro = $('#creatorIntro');
     dom.creatorIntroNote = $('#creatorIntroNote');
+    dom.creatorIntroLead = $('#creatorIntroLead');
     dom.creatorIntroGrid = $('#creatorIntroGrid');
-    dom.creatorPlaceholder = $('#creatorPlaceholder');
+    dom.creatorContact = $('#creatorContact');
 
     dom.resetDialog = $('#resetDialog');
     dom.resetCancelBtn = $('#resetCancelBtn');
@@ -623,9 +624,6 @@
     dom.creatorMessages.innerHTML = '';
     dom.creatorOptions.innerHTML = '';
     dom.creatorIntro.classList.add('hidden');
-    dom.creatorPlaceholder.classList.add('hidden');
-    dom.creatorPlaceholder.querySelector('p').textContent = D.CREATOR.placeholder;
-    dom.creatorIntroGrid.innerHTML = '';
     renderCreatorIntroCards();
     setCreatorTyping(false);
   }
@@ -678,24 +676,42 @@
   }
 
   function renderCreatorIntroCards() {
+    dom.creatorIntroLead.innerHTML = '';
+    D.CREATOR.introLead.forEach((paragraph) => {
+      dom.creatorIntroLead.appendChild(make('p', '', paragraph));
+    });
+
     dom.creatorIntroGrid.innerHTML = '';
     D.CREATOR.introCards.forEach((item) => {
-      const button = make('button', 'intro-card');
-      button.type = 'button';
-      button.appendChild(make('strong', '', item.title));
-      button.appendChild(make('small', '', item.hint));
-      button.addEventListener('click', showCreatorPlaceholder);
-      dom.creatorIntroGrid.appendChild(button);
+      const card = make('article', 'intro-card intro-card--static');
+      card.appendChild(make('strong', '', item.title));
+      card.appendChild(make('small', '', item.hint));
+      card.appendChild(make('p', 'intro-card__body', item.body));
+      dom.creatorIntroGrid.appendChild(card);
     });
-  }
 
-  function showCreatorPlaceholder() {
-    dom.creatorPlaceholder.querySelector('p').textContent = D.CREATOR.placeholder;
-    dom.creatorPlaceholder.classList.remove('hidden');
-    dom.creatorPlaceholder.scrollIntoView({
-      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-      block: 'nearest'
+    const contact = D.CREATOR.contact;
+    dom.creatorContact.innerHTML = '';
+    dom.creatorContact.appendChild(make('p', 'intro-contact__label', contact.label));
+    const rows = make('div', 'intro-contact__rows');
+    [
+      ['微信', contact.wechat],
+      ['QQ', contact.qq],
+      ['电话', contact.phone]
+    ].forEach(([label, value]) => {
+      const row = make('div', 'intro-contact__row');
+      row.appendChild(make('span', '', label));
+      if (label === '电话') {
+        const link = make('a', '', value);
+        link.href = 'tel:' + value;
+        row.appendChild(link);
+      } else {
+        row.appendChild(make('strong', '', value));
+      }
+      rows.appendChild(row);
     });
+    dom.creatorContact.appendChild(rows);
+    dom.creatorContact.appendChild(make('p', 'intro-contact__note', contact.note));
   }
 
   /* =========================================================

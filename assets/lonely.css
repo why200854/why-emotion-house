@@ -1,0 +1,859 @@
+/* =========================================================
+   孤独情境交互 · 灰白渐变 + 太阳花插画
+   共用 breakup.css 的对话/独白/闭幕框架，这里覆盖主题与插画
+   ========================================================= */
+
+:root {
+  --lo-ink: #3f4842;
+  --lo-ink-2: #627069;
+  --lo-ink-3: #8b958e;
+  --lo-paper: #fffdf8;
+  --lo-paper-soft: #f1f3ee;
+  --lo-line: rgba(62, 77, 67, 0.14);
+  --lo-sage: #7b8b80;
+  --lo-sage-deep: #4d6054;
+  --lo-sage-soft: #e4e9e2;
+  --lo-gold: #d7a744;
+  --lo-gold-deep: #916425;
+
+  --bg: #e2e6e1;
+  --bg-deep: #d1d8d2;
+  --paper: var(--lo-paper);
+  --paper-soft: var(--lo-paper-soft);
+  --ink: var(--lo-ink);
+  --ink-2: var(--lo-ink-2);
+  --ink-3: var(--lo-ink-3);
+  --rose: var(--lo-sage);
+  --rose-deep: var(--lo-sage-deep);
+  --rose-soft: var(--lo-sage-soft);
+  --rose-mist: #f1f3ee;
+  --gold: var(--lo-gold);
+  --line: var(--lo-line);
+  --shadow: 0 24px 64px rgba(58, 73, 62, 0.13);
+  --shadow-soft: 0 10px 30px rgba(58, 73, 62, 0.08);
+}
+
+body {
+  color: var(--ink);
+  background:
+    radial-gradient(900px 580px at 4% -8%, rgba(255, 252, 243, 0.82), transparent 64%),
+    radial-gradient(820px 620px at 100% 5%, rgba(207, 216, 208, 0.72), transparent 62%),
+    linear-gradient(160deg, #eef1ec 0%, #dfe4df 50%, #f8f6ef 100%);
+}
+
+.ambient-art__wash--one {
+  background: #cfd8d1;
+}
+
+.ambient-art__wash--two {
+  background: #f3e6c8;
+}
+
+.deco-sun {
+  position: absolute;
+  top: 13%;
+  right: 5%;
+  width: 72px;
+  height: 72px;
+  color: var(--lo-gold);
+  opacity: 0.3;
+  animation: lonelySun 12s ease-in-out infinite alternate;
+}
+
+.deco-flower {
+  position: absolute;
+  color: var(--lo-gold);
+  opacity: 0.2;
+  animation: flowerSway 10s ease-in-out infinite alternate;
+}
+
+.deco-flower--one {
+  bottom: 7%;
+  left: 4%;
+  width: 130px;
+  height: 130px;
+  transform: rotate(-14deg);
+}
+
+.deco-flower--two {
+  top: 15%;
+  left: 2%;
+  width: 64px;
+  height: 64px;
+  opacity: 0.14;
+  animation-delay: -4s;
+}
+
+.drifting-seed {
+  position: absolute;
+  display: block;
+  width: 8px;
+  height: 4px;
+  background: rgba(145, 100, 37, 0.26);
+  border-radius: 100% 0 100% 0;
+  animation: seedDrift 16s linear infinite;
+}
+
+.drifting-seed--one {
+  top: 28%;
+  left: 12%;
+  animation-delay: -3s;
+}
+
+.drifting-seed--two {
+  top: 55%;
+  left: 74%;
+  animation-delay: -8s;
+}
+
+.drifting-seed--three {
+  top: 40%;
+  left: 46%;
+  width: 6px;
+  height: 3px;
+  animation-delay: -12s;
+}
+
+.scene-brand__mark {
+  color: var(--lo-sage-deep);
+  background: rgba(255, 253, 247, 0.74);
+  border-color: rgba(77, 96, 84, 0.16);
+}
+
+.scene-brand__mark .icon {
+  color: var(--lo-sage-deep);
+}
+
+.duration-pill {
+  color: var(--lo-sage-deep);
+  background: rgba(255, 253, 247, 0.62);
+  border-color: rgba(77, 96, 84, 0.16);
+}
+
+.back-link {
+  color: var(--lo-ink-2);
+}
+
+.back-link:hover {
+  color: var(--lo-sage-deep);
+  border-color: rgba(77, 96, 84, 0.4);
+}
+
+.story-visual {
+  background:
+    radial-gradient(360px 300px at 8% 0%, rgba(255, 255, 255, 0.72), transparent 66%),
+    linear-gradient(160deg, rgba(248, 248, 243, 0.94), rgba(214, 221, 214, 0.84));
+  border-color: rgba(255, 255, 255, 0.78);
+}
+
+.day-meta {
+  color: var(--lo-ink-3);
+}
+
+.day-meta__day {
+  color: var(--lo-sage-deep);
+}
+
+.day-meta__dot {
+  background: var(--lo-sage);
+}
+
+/* ---------- 灰白插画舞台 ---------- */
+
+.lonely-visual {
+  --ground-top: #b8c1b9;
+  --ground-bottom: #a9b5ac;
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 360px;
+  margin-top: 12px;
+  overflow: hidden;
+  background-color: #c6ccc7;
+  border: 1px solid rgba(255, 255, 255, 0.56);
+  border-radius: 22px;
+  transition: background-color 2.4s var(--ease);
+}
+
+.lonely-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(360px 240px at 65% 12%, rgba(255, 250, 229, 0.9), transparent 66%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 54%);
+  opacity: 0.5;
+  transition: opacity 2.4s var(--ease);
+  pointer-events: none;
+}
+
+.lonely-visual[data-tone="gray1"] {
+  --ground-top: #b8c1b9;
+  --ground-bottom: #a5b1a8;
+  background-color: #c5cbc6;
+}
+
+.lonely-visual[data-tone="gray2"] {
+  --ground-top: #c3cbc2;
+  --ground-bottom: #b1bcb2;
+  background-color: #d7dbd6;
+}
+
+.lonely-visual[data-tone="light"] {
+  --ground-top: #d7ddd4;
+  --ground-bottom: #c7d1c7;
+  background-color: #e9ece6;
+}
+
+.lonely-visual[data-tone="white"] {
+  --ground-top: #e4e7db;
+  --ground-bottom: #d7ded3;
+  background-color: #fbfaf5;
+}
+
+.lonely-visual[data-tone="white"]::before {
+  opacity: 0.9;
+}
+
+.lonely-visual__glow {
+  position: absolute;
+  top: 4%;
+  right: 8%;
+  width: 210px;
+  height: 210px;
+  background: radial-gradient(circle, rgba(255, 246, 210, 0.72), transparent 70%);
+  opacity: 0.35;
+  transition: opacity 2.4s var(--ease);
+  pointer-events: none;
+}
+
+.lonely-visual[data-tone="light"] .lonely-visual__glow,
+.lonely-visual[data-tone="white"] .lonely-visual__glow {
+  opacity: 0.8;
+}
+
+.lonely-svg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lonely-sun {
+  opacity: 0.26;
+  transition: opacity 2.4s var(--ease);
+}
+
+.lonely-sun-core {
+  fill: #f0d18d;
+  opacity: 0.18;
+  transition: opacity 2.4s var(--ease);
+}
+
+.lonely-visual[data-tone="gray2"] .lonely-sun,
+.lonely-visual[data-tone="gray2"] .lonely-sun-core {
+  opacity: 0.4;
+}
+
+.lonely-visual[data-tone="light"] .lonely-sun,
+.lonely-visual[data-tone="light"] .lonely-sun-core {
+  opacity: 0.65;
+}
+
+.lonely-visual[data-tone="white"] .lonely-sun,
+.lonely-visual[data-tone="white"] .lonely-sun-core {
+  opacity: 0.86;
+}
+
+.cloud {
+  fill: rgba(255, 253, 247, 0.42);
+  transition: opacity 2.4s var(--ease), transform 8s ease-in-out;
+}
+
+.cloud--one {
+  animation: cloudDrift 16s ease-in-out infinite alternate;
+}
+
+.cloud--two {
+  animation: cloudDrift 19s ease-in-out -6s infinite alternate-reverse;
+}
+
+.lonely-visual[data-tone="white"] .cloud {
+  opacity: 0.7;
+}
+
+.lonely-ground {
+  transition: filter 2.4s var(--ease);
+}
+
+.lonely-grass-line {
+  fill: none;
+  stroke: rgba(60, 76, 63, 0.26);
+  stroke-width: 1.3;
+}
+
+.grass-tufts {
+  fill: none;
+  stroke: rgba(63, 79, 65, 0.42);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.figure {
+  transition: transform 1.6s var(--ease), opacity 1.4s var(--ease);
+}
+
+.figure-shadow {
+  fill: rgba(52, 67, 56, 0.16);
+}
+
+.boy-body {
+  fill: #5b6860;
+}
+
+.boy-legs {
+  fill: #3f4b44;
+  stroke: #3f4b44;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.boy-arm {
+  fill: none;
+  stroke: #78867d;
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.boy-hand {
+  fill: #e5c6ae;
+}
+
+.boy-shoe {
+  fill: #303a34;
+}
+
+.boy-head,
+.girl-head {
+  fill: #e5c6ae;
+}
+
+.boy-hair {
+  fill: #303b35;
+}
+
+.boy-face {
+  fill: none;
+  stroke: #7b5a48;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+}
+
+.girl-dress {
+  fill: #f1e8d9;
+}
+
+.girl-body {
+  fill: #d8b678;
+}
+
+.girl-legs {
+  fill: #b68f5b;
+  stroke: #b68f5b;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.girl-arm {
+  fill: none;
+  stroke: #d8b678;
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.girl-hair {
+  fill: #4a3a30;
+}
+
+.girl-flower {
+  transition: opacity 0.6s;
+}
+
+.boy--sitting {
+  transform: translate(250px, 285px);
+  opacity: 1;
+}
+
+.boy--standing {
+  transform: translate(250px, 285px);
+  opacity: 0;
+}
+
+.girl {
+  transform: translate(380px, 285px);
+  opacity: 0;
+}
+
+.hug-arms {
+  transform: translate(355px, 285px);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+}
+
+.hug-arms path {
+  fill: none;
+  stroke: #637168;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.floating-flower {
+  transform: translate(370px, 225px) scale(1.15);
+  opacity: 0;
+  transform-origin: center;
+  transition: transform 3.4s var(--ease), opacity 0.4s var(--ease);
+}
+
+/* 情绪/画面状态 */
+
+.lonely-visual[data-scene="open"] .boy--sitting {
+  opacity: 0;
+  transform: translate(250px, 300px) rotate(-4deg);
+}
+
+.lonely-visual[data-scene="open"] .boy--standing {
+  opacity: 1;
+  transform: translate(250px, 285px);
+}
+
+.lonely-visual[data-scene="meet"] .boy--sitting {
+  opacity: 0;
+}
+
+.lonely-visual[data-scene="meet"] .boy--standing {
+  opacity: 1;
+  transform: translate(230px, 285px);
+}
+
+.lonely-visual[data-scene="meet"] .girl {
+  opacity: 1;
+  transform: translate(380px, 285px);
+}
+
+.lonely-visual[data-scene="run"] .boy--sitting {
+  opacity: 0;
+}
+
+.lonely-visual[data-scene="run"] .boy--standing {
+  opacity: 1;
+  transform: translate(300px, 285px);
+}
+
+.lonely-visual[data-scene="run"] .girl {
+  opacity: 1;
+  transform: translate(380px, 285px);
+}
+
+.lonely-visual[data-scene="hug"] .boy--sitting {
+  opacity: 0;
+}
+
+.lonely-visual[data-scene="hug"] .boy--standing {
+  opacity: 1;
+  transform: translate(335px, 285px);
+}
+
+.lonely-visual[data-scene="hug"] .girl {
+  opacity: 1;
+  transform: translate(370px, 285px);
+}
+
+.lonely-visual[data-scene="hug"] .hug-arms {
+  opacity: 1;
+}
+
+.lonely-visual[data-scene="release"] .boy--sitting {
+  opacity: 0;
+}
+
+.lonely-visual[data-scene="release"] .boy--standing {
+  opacity: 1;
+  transform: translate(320px, 285px);
+}
+
+.lonely-visual[data-scene="release"] .girl {
+  opacity: 1;
+  transform: translate(410px, 285px);
+}
+
+.lonely-visual[data-scene="release"] .girl-flower {
+  opacity: 0;
+}
+
+.lonely-visual[data-scene="release"] .floating-flower {
+  opacity: 1;
+  transform: translate(410px, -30px) scale(1.25) rotate(30deg);
+}
+
+.lonely-visual[data-scene="hug"] .lonely-caption,
+.lonely-visual[data-scene="release"] .lonely-caption {
+  color: var(--lo-gold-deep);
+}
+
+.lonely-caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  margin: 0;
+  padding: 30px 18px 14px;
+  color: var(--lo-ink-2);
+  background: linear-gradient(to top, rgba(246, 246, 238, 0.92), rgba(246, 246, 238, 0));
+  font-family: var(--font-serif);
+  font-size: 13px;
+  line-height: 1.7;
+  text-align: center;
+  text-shadow: 0 1px 12px rgba(255, 255, 255, 0.8);
+}
+
+.day-progress span {
+  background: rgba(77, 96, 84, 0.16);
+}
+
+.day-progress span.is-done {
+  background: rgba(123, 139, 128, 0.56);
+}
+
+.day-progress span.is-active {
+  background: var(--lo-sage-deep);
+}
+
+.scene-note {
+  color: var(--lo-ink-3);
+}
+
+/* ---------- 对话主题 ---------- */
+
+.dialogue-card {
+  background:
+    radial-gradient(500px 260px at 100% 0%, rgba(246, 241, 228, 0.65), transparent 68%),
+    rgba(255, 253, 248, 0.94);
+}
+
+.dialogue-head {
+  border-bottom-color: var(--lo-line);
+}
+
+.text-avatar {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.4), transparent 42%),
+    linear-gradient(145deg, #8b9a8e, #4d6054);
+  border-color: rgba(255, 253, 247, 0.9);
+  box-shadow: 0 6px 16px rgba(54, 73, 61, 0.22);
+}
+
+.text-avatar--wang {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.36), transparent 42%),
+    linear-gradient(145deg, #7f9a86, #4f6a58);
+}
+
+.online-state {
+  color: #6b8d73;
+}
+
+.message__who {
+  color: var(--lo-sage-deep);
+  background: var(--lo-sage-soft);
+}
+
+.message--user .message__who {
+  color: var(--lo-paper);
+  background: var(--lo-sage);
+}
+
+.message__bubble {
+  color: var(--ink);
+  background: #f6f5ed;
+  border-color: rgba(77, 96, 84, 0.1);
+}
+
+.message--user .message__bubble {
+  color: #fffdf7;
+  background: linear-gradient(145deg, #839287, #4d6054);
+}
+
+.choice {
+  background: rgba(246, 245, 237, 0.9);
+  border-color: rgba(77, 96, 84, 0.14);
+}
+
+.choice:hover {
+  background: #fffdf7;
+  border-color: rgba(123, 139, 128, 0.5);
+  box-shadow: 0 8px 20px rgba(58, 73, 62, 0.08);
+}
+
+.choice__heart {
+  color: var(--lo-gold-deep);
+  background: #f3ead6;
+}
+
+.next-btn {
+  color: var(--lo-sage-deep);
+  border-color: rgba(77, 96, 84, 0.28);
+}
+
+.dialogue-hint {
+  color: var(--lo-ink-3);
+}
+
+.day-banner {
+  background:
+    radial-gradient(700px 440px at 50% 40%, rgba(255, 253, 246, 0.88), transparent 66%),
+    linear-gradient(160deg, #e4e8e2, #f8f7ef);
+}
+
+.day-banner__line {
+  background: var(--lo-sage);
+}
+
+.day-banner__day {
+  color: var(--lo-sage-deep);
+}
+
+.day-banner__rose {
+  color: var(--lo-gold);
+}
+
+.day-banner__flower {
+  display: block;
+  width: 72px;
+  height: 72px;
+  margin-top: 22px;
+  color: var(--lo-gold);
+  opacity: 0.65;
+  animation: flowerSway 5s ease-in-out infinite alternate;
+}
+
+.day-banner__flower .icon {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- 王同志独白 ---------- */
+
+.monologue-card {
+  background:
+    radial-gradient(420px 240px at 100% 0%, rgba(250, 245, 229, 0.72), transparent 70%),
+    rgba(255, 253, 247, 0.9);
+  box-shadow: 0 26px 80px rgba(54, 73, 61, 0.16), 0 0 60px rgba(235, 226, 197, 0.36);
+}
+
+.monologue-head {
+  border-bottom-color: rgba(77, 96, 84, 0.08);
+}
+
+.monologue-head__tag {
+  color: var(--lo-sage-deep);
+  background: var(--lo-sage-soft);
+  border-color: rgba(77, 96, 84, 0.12);
+}
+
+.monologue-kicker {
+  color: var(--lo-gold-deep);
+}
+
+.monologue-sentence {
+  color: var(--lo-ink);
+}
+
+.monologue-sentence--accent {
+  color: var(--lo-gold-deep);
+}
+
+.monologue-footer > span {
+  color: var(--lo-ink-3);
+}
+
+body.monologue-mode .ambient-art {
+  filter: blur(12px) saturate(0.65);
+  opacity: 0.72;
+}
+
+/* ---------- 闭幕 ---------- */
+
+.closing-view::before {
+  background: radial-gradient(circle, rgba(255, 253, 244, 0.96), rgba(236, 239, 229, 0.4) 52%, transparent 72%);
+}
+
+.closing-sun {
+  position: absolute;
+  top: 12%;
+  right: 14%;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(243, 210, 132, 0.68), transparent 70%);
+  border-radius: 50%;
+  filter: blur(4px);
+}
+
+.closing-flower {
+  position: relative;
+  z-index: 2;
+  width: 112px;
+  height: 112px;
+  color: var(--lo-gold);
+  filter: drop-shadow(0 0 26px rgba(241, 209, 131, 0.66));
+  animation: closingFlower 3s ease-in-out infinite;
+}
+
+.closing-flower svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.closing-eyebrow {
+  color: var(--lo-gold-deep);
+}
+
+.closing-lines p {
+  color: var(--lo-ink-2);
+}
+
+.closing-thanks,
+.closing-note {
+  color: var(--lo-ink-3);
+}
+
+.leave-btn {
+  color: #fffdf7;
+  background: linear-gradient(135deg, #7b8b80, #4d6054);
+  box-shadow: 0 14px 32px rgba(54, 73, 61, 0.24);
+}
+
+.leave-btn:hover {
+  box-shadow: 0 18px 38px rgba(54, 73, 61, 0.3);
+}
+
+.closing-petals span {
+  background: rgba(145, 100, 37, 0.28);
+}
+
+/* ---------- 固定免责声明 ---------- */
+
+.scene-disclaimer {
+  color: #5f6c64;
+  background: rgba(255, 253, 247, 0.95);
+  border-top-color: rgba(77, 96, 84, 0.14);
+  box-shadow: 0 -8px 26px rgba(54, 73, 61, 0.06);
+}
+
+.scene-disclaimer strong {
+  color: var(--lo-sage-deep);
+}
+
+/* ---------- 动画 ---------- */
+
+@keyframes lonelySun {
+  from { transform: rotate(-3deg) scale(0.96); }
+  to { transform: rotate(4deg) scale(1.04); }
+}
+
+@keyframes flowerSway {
+  from { transform: rotate(-5deg) translateY(0); }
+  to { transform: rotate(6deg) translateY(-7px); }
+}
+
+@keyframes cloudDrift {
+  from { transform: translateX(0); }
+  to { transform: translateX(13px); }
+}
+
+@keyframes seedDrift {
+  0% { opacity: 0; transform: translate3d(0, -10px, 0) rotate(0); }
+  15% { opacity: 1; }
+  100% { opacity: 0; transform: translate3d(44px, 105vh, 0) rotate(240deg); }
+}
+
+@keyframes flowerRise {
+  0% {
+    opacity: 1;
+    transform: translate(370px, 225px) scale(0.9) rotate(0);
+  }
+  100% {
+    opacity: 0.75;
+    transform: translate(400px, -36px) scale(1.08) rotate(34deg);
+  }
+}
+
+@keyframes closingFlower {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-8px) rotate(4deg); }
+}
+
+/* ---------- 响应式 ---------- */
+
+@media (max-width: 980px) {
+  .lonely-visual {
+    flex: 1 1 220px;
+    min-height: 230px;
+    margin-top: 0;
+  }
+
+  .lonely-svg {
+    min-height: 210px;
+  }
+
+  .lonely-caption {
+    padding-bottom: 8px;
+    font-size: 11px;
+    text-align: left;
+    align-self: flex-start;
+  }
+
+  .story-visual {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  .lonely-visual {
+    min-height: 205px;
+    border-radius: 16px;
+  }
+
+  .lonely-svg {
+    min-height: 190px;
+  }
+
+  .lonely-caption {
+    font-size: 10px;
+    line-height: 1.55;
+  }
+
+  .lonely-sun {
+    opacity: 0.22;
+  }
+
+  .closing-flower {
+    width: 86px;
+    height: 86px;
+  }
+
+  .closing-sun {
+    width: 110px;
+    height: 110px;
+  }
+}
