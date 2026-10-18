@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#F4EDE3">
+  <meta name="description" content="why哥的情绪陪伴屋：一个可以坐下来说话的小角落。先打个招呼，再认识 why哥。情境对话正在开发中。">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; media-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+  <title>why哥的情绪陪伴屋</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <svg class="svg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="icon-house" viewBox="0 0 24 24">
+      <path d="M4 10.3 12 4l8 6.3V20H4V10.3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M9.5 20v-5.5h5V20M8 10.8h.1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24">
+      <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24">
+      <path d="M12 20s-7.7-4.5-7.7-10A4.3 4.3 0 0 1 12 7.2 4.3 4.3 0 0 1 19.7 10c0 5.5-7.7 10-7.7 10Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24">
+      <path d="M7.3 3.8 9 8.1 6.8 9.9c.9 2.5 2.8 4.4 5.3 5.3l1.8-2.2 4.2 1.7v3.2c0 .8-.7 1.5-1.5 1.4C9 18.7 5.3 15 4.4 7.4c-.1-.8.5-1.5 1.3-1.5h3.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-pin" viewBox="0 0 24 24">
+      <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <circle cx="12" cy="10" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    </symbol>
+    <symbol id="icon-run" viewBox="0 0 24 24">
+      <circle cx="14.7" cy="4.8" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="m13.2 8.6-2.8 4 2.5 1.7-2.6 5.6M10.4 12.6 6.7 11M13.9 14.3l4.2-1.1M8.5 20l2.2-3.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-tea" viewBox="0 0 24 24">
+      <path d="M5 9h11v6.5A3.5 3.5 0 0 1 12.5 19h-4A3.5 3.5 0 0 1 5 15.5V9Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M16 10.2h1.8a2.1 2.1 0 0 1 0 4.2H16M8 5.5c0-1 1-1.2 1-2.2M12 5.5c0-1 1-1.2 1-2.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-film" viewBox="0 0 24 24">
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M8 5.5v13M16 5.5v13M3.5 9h4.5M16 9h4.5M3.5 15h4.5M16 15h4.5M10.5 9.5l4 2.5-4 2.5v-5Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-story" viewBox="0 0 24 24">
+      <path d="M5 4.5h10.5A3.5 3.5 0 0 1 19 8v11.5H8.5A3.5 3.5 0 0 1 5 16V4.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M5 15.5h14M8.5 8h6.5M8.5 11h5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-hammer" viewBox="0 0 24 24">
+      <path d="m13.5 6.5 4 4M4 20l7.5-7.5M10.7 4.2l9.1 9.1M8.2 6.7l9.1 9.1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24">
+      <rect x="4" y="5.5" width="16" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M8 3.5v4M16 3.5v4M4 10h16M8 13.5h2M14 13.5h2M8 16.5h2M14 16.5h2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-refresh" viewBox="0 0 24 24">
+      <path d="M19.5 9A8 8 0 1 0 20 14M19.5 9V4.5M19.5 9H15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-spark" viewBox="0 0 24 24">
+      <path d="M12 3c.7 4.8 2.2 6.3 7 7-4.8.7-6.3 2.2-7 7-.7-4.8-2.2-6.3-7-7 4.8-.7 6.3-2.2 7-7Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-music" viewBox="0 0 24 24">
+      <path d="M9 18V6l10-2v12M9 18a3 3 0 1 1-3-3h3M19 16a3 3 0 1 1-3-3h3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-info" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M12 11v5.5M12 7.7v.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24">
+      <path d="m12 3 7 3v5.5c0 4.4-3 8-7 9.5-4-1.5-7-5.1-7-9.5V6l7-3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="m8.8 12 2.1 2.2 4.4-4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient__sun"></span>
+    <span class="ambient__blob ambient__blob--warm"></span>
+    <span class="ambient__blob ambient__blob--sage"></span>
+    <span class="ambient__grain"></span>
+  </div>
+
+  <header class="site-header">
+    <button class="brand" id="brandHome" type="button" aria-label="why哥的情绪陪伴屋，回到首页">
+      <span class="brand__mark"><svg class="icon" aria-hidden="true"><use href="#icon-house"></use></svg></span>
+      <span class="brand__copy">
+        <strong>why哥的情绪陪伴屋</strong>
+        <small>WHY'S COMPANY ROOM</small>
+      </span>
+    </button>
+
+    <nav class="main-nav" id="mainNav" aria-label="页面模块" hidden>
+      <a href="#sceneSection">情境对话</a>
+      <a href="#runSection">身体运动汇</a>
+      <a href="#creatorSection">创作者</a>
+      <a href="#meetSection">线下约见</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="support-link" id="supportBtn" type="button" aria-label="需要真人支持">
+        <svg class="icon icon--small" aria-hidden="true"><use href="#icon-heart"></use></svg>
+        <span>需要真人支持</span>
+      </button>
+      <div class="user-chip" id="userChip" hidden>
+        <span class="user-chip__initial" id="userInitial">W</span>
+        <span class="user-chip__copy">
+          <strong id="userChipName">同学</strong>
+          <small id="userChipMeta">温柔倾听 · 女生</small>
+        </span>
+      </div>
+      <button class="icon-action" id="resetBtn" type="button" aria-label="重新认识" title="重新认识" hidden>
+        <svg class="icon" aria-hidden="true"><use href="#icon-refresh"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="onboarding" id="onboardingView">
+      <div class="entry-shell">
+        <div class="entry-head">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__dot"></span>初次见面</p>
+            <h1>先打个招呼，再进屋。</h1>
+          </div>
+          <ol class="entry-steps" id="entrySteps" aria-label="开场进度">
+            <li data-step="1" class="is-active"><span>01</span>打个招呼</li>
+            <li data-step="2"><span>02</span>认识你</li>
+            <li data-step="3"><span>03</span>进屋</li>
+          </ol>
+        </div>
+
+        <div class="entry-card">
+          <aside class="entry-portrait" aria-label="王浩宇，why哥">
+            <div class="entry-portrait__arch">
+              <span class="entry-portrait__star entry-portrait__star--one"></span>
+              <span class="entry-portrait__star entry-portrait__star--two"></span>
+              <div class="entry-wordmark" aria-hidden="true">
+                <span class="entry-wordmark__main">why</span>
+                <span class="entry-wordmark__sub">王同志</span>
+              </div>
+            </div>
+            <div class="entry-nameplate">
+              <span class="online-dot"></span>
+              <div>
+                <strong>王浩宇</strong>
+                <small>why哥 · 湖科大</small>
+              </div>
+            </div>
+            <p class="entry-quote">“门开着，进来坐。”</p>
+          </aside>
+
+          <div class="entry-dialogue">
+            <div class="dialogue-head">
+              <div class="dialogue-speaker">
+                <span class="speaker-dot"></span>
+                <strong>王同志</strong>
+              </div>
+              <span class="dialogue-mode" id="entryMode">第一次见面</span>
+            </div>
+
+            <div class="dialogue-messages" id="entryMessages" role="log" aria-live="polite" aria-label="开场对话"></div>
+
+            <div class="typing hidden" id="entryTyping" aria-label="王同志正在想">
+              <span></span><span></span><span></span>
+              <em class="typing__label">王同志正在想…</em>
+            </div>
+
+            <div class="dialogue-choices" id="entryChoices" role="group" aria-label="选择你的回应"></div>
+
+            <form class="profile-form hidden" id="profileForm" novalidate>
+              <div class="profile-form__head">
+                <p class="eyebrow">认识你</p>
+                <h2 id="formPrompt">先告诉我，我该怎么叫你？</h2>
+                <p id="formHint">选一个你愿意被叫的名字就好，不用写真名。</p>
+              </div>
+
+              <fieldset class="form-field">
+                <legend>怎么称呼你</legend>
+                <label class="sr-only" for="nicknameInput">你的昵称</label>
+                <input class="text-input" id="nicknameInput" type="text" maxlength="12" autocomplete="off" placeholder="比如：小林、阿圆、why哥的网友">
+                <p class="form-error hidden" id="nicknameError" role="alert">先留一个昵称吧，空着我不知道该叫谁。</p>
+              </fieldset>
+
+              <fieldset class="form-field">
+                <legend>你是</legend>
+                <div class="gender-grid" id="genderOptions" role="radiogroup" aria-label="选择性别"></div>
+              </fieldset>
+
+              <fieldset class="form-field">
+                <legend>想让我怎么陪你</legend>
+                <div class="personality-grid" id="personalityOptions" role="radiogroup" aria-label="选择相处风格"></div>
+              </fieldset>
+
+              <p class="form-error hidden" id="formError" role="alert">还差一个选择，补上就可以进屋。</p>
+
+              <button class="primary-btn primary-btn--wide" id="enterBtn" type="submit">
+                <span>进屋看看</span>
+                <svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+              </button>
+              <p class="form-note">昵称、性别和选择只保存在当前浏览器，不需要注册。</p>
+            </form>
+
+            <div class="entry-after hidden" id="entryAfter" aria-live="polite">
+              <span class="door-loader" aria-hidden="true"></span>
+              <p id="entryAfterText">门开了，进屋吧。</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="entry-footnote">
+          <svg class="icon icon--small" aria-hidden="true"><use href="#icon-shield"></use></svg>
+          这里不是心理咨询，不能替代专业帮助。若此刻有立即危险，请拨打 120 / 110。
+        </p>
+      </div>
+    </section>
+
+    <section class="home-view hidden" id="homeView">
+      <div class="home-welcome">
+        <div class="home-welcome__main">
+          <span class="text-avatar text-avatar--home" aria-hidden="true">why</span>
+          <div class="home-welcome__copy">
+            <p class="eyebrow"><span class="live-dot"></span>今日营业中</p>
+            <h1>欢迎进屋，<span id="homeNickname">同学</span>。</h1>
+            <p class="home-welcome__lead" id="homeWelcome">先随便坐，这里不用急着说没事。</p>
+          </div>
+        </div>
+        <div class="home-tags">
+          <span id="homePersonalityTag">温柔倾听</span>
+          <span id="homeGenderTag">女生</span>
+          <span>王浩宇 · why哥</span>
+          <span>初版测试</span>
+        </div>
+      </div>
+
+      <div class="section-list">
+        <section class="module module--scene" id="sceneSection" aria-labelledby="sceneTitle">
+          <header class="module-head">
+            <span class="module-no">01</span>
+            <div class="module-title">
+              <p class="eyebrow">核心区域</p>
+              <h2 id="sceneTitle">情境对话交互区</h2>
+            </div>
+            <span class="status-pill status-pill--warm">装修中</span>
+          </header>
+          <div class="construction-card">
+            <div class="construction-card__badge">
+              <svg class="icon icon--small" aria-hidden="true"><use href="#icon-hammer"></use></svg>
+              施工中
+            </div>
+            <div class="construction-card__body">
+              <h3>why哥正在开发中</h3>
+              <p>情境对话会由 why哥 亲自策划，不同场景会有不同的回答。现在先把位置留好，不拿半成品糊弄你。</p>
+              <div class="construction-tags">
+                <span>失恋</span><span>孤独</span><span>学业压力</span><span>日常烦恼</span><span>……</span>
+              </div>
+            </div>
+            <div class="construction-card__icon" aria-hidden="true">
+              <svg class="icon" aria-hidden="true"><use href="#icon-story"></use></svg>
+            </div>
+          </div>
+        </section>
+
+        <section class="module" id="runSection" aria-labelledby="runTitle">
+          <header class="module-head">
+            <span class="module-no">02</span>
+            <div class="module-title">
+              <p class="eyebrow">身体运动汇健康</p>
+              <h2 id="runTitle">先迈开腿，再谈别的</h2>
+            </div>
+            <span class="status-pill">部分开放</span>
+          </header>
+
+          <div class="run-card">
+            <div class="run-card__copy">
+              <div class="run-badges">
+                <span class="status-pill status-pill--accent">需提前预约</span>
+                <span class="run-distance">校园跑 · 夜跑 · 慢跑</span>
+              </div>
+              <h3>校园跑陪跑</h3>
+              <p class="run-description">想跑步又不想一个人？why哥可以陪你绕校园跑一圈。跑不动可以走，走不动可以坐在操场边聊天。</p>
+              <div class="run-temptations" id="runTemptations"></div>
+              <div class="run-actions">
+                <button class="primary-btn" id="bookRunBtn" type="button">
+                  <span>预约陪跑</span>
+                  <svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                </button>
+                <span class="run-actions__note">预约通道正在接通</span>
+              </div>
+            </div>
+            <div class="run-card__art" aria-hidden="true">
+              <svg viewBox="0 0 340 360" role="presentation">
+                <defs>
+                  <linearGradient id="trackBg" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#F8E7D6"/>
+                    <stop offset="1" stop-color="#EFC8AF"/>
+                  </linearGradient>
+                </defs>
+                <rect width="340" height="360" rx="28" fill="url(#trackBg)"/>
+                <circle cx="255" cy="80" r="38" fill="#F8DCA8" opacity=".75"/>
+                <path d="M-20 300 C80 210 175 340 370 200" stroke="#D99272" stroke-width="24" fill="none" opacity=".26"/>
+                <path d="M-20 300 C80 210 175 340 370 200" stroke="#B96F53" stroke-width="2" stroke-dasharray="8 10" fill="none" opacity=".6"/>
+                <path d="M-20 340 C85 250 185 380 370 240" stroke="#FDF6EC" stroke-width="9" fill="none" opacity=".55"/>
+                <path d="M40 326 C43 305 62 296 80 306 C68 320 55 328 40 326Z" fill="#7F9A86"/>
+                <path d="M44 326 C59 309 82 310 94 320 C82 331 65 335 44 326Z" fill="#94AD95"/>
+                <path d="M130 276 c8-28 28-43 52-39 c-4 24-22 42-52 39Z" fill="#7F9A86" opacity=".9"/>
+                <path d="M136 280 c2-30 18-51 43-56 c7 25-8 49-43 56Z" fill="#6C876F" opacity=".8"/>
+                <path d="M226 126 c14 5 22 18 21 33 c-16-1-26-13-21-33Z" fill="#C96F4A" opacity=".72"/>
+                <path d="M232 273 c0-20 16-35 35-35 c0 20-15 35-35 35Z" fill="#F6E4D5"/>
+                <path d="M267 238 c-20 0-35 16-35 35 c20 0 35-15 35-35Z" fill="#F9EFE5"/>
+                <path d="M247 273 l15-15" stroke="#C96F4A" stroke-width="2" stroke-linecap="round"/>
+                <text x="48" y="98" fill="#6D5145" font-family="serif" font-size="16" letter-spacing="3">RUN WITH WHY</text>
+                <text x="48" y="126" fill="#8D6C5E" font-family="sans-serif" font-size="10" letter-spacing="2">先约，再跑，别放鸽子</text>
+              </svg>
+            </div>
+          </div>
+          <div class="mini-grid" id="runOthers"></div>
+        </section>
+
+        <section class="module" id="creatorSection" aria-labelledby="creatorTitle">
+          <header class="module-head">
+            <span class="module-no">03</span>
+            <div class="module-title">
+              <p class="eyebrow">创作者王浩宇</p>
+              <h2 id="creatorTitle">屋里这个人是谁</h2>
+            </div>
+            <span class="status-pill">可互动</span>
+          </header>
+
+          <button class="creator-card" id="openCreator" type="button">
+            <span class="creator-card__avatar">
+              <span class="text-avatar text-avatar--creator" aria-hidden="true">why</span>
+              <span class="creator-card__pin">王同志</span>
+            </span>
+            <span class="creator-card__copy">
+              <span class="creator-card__kicker">why哥 / 王浩宇</span>
+              <strong>点我了解王浩宇</strong>
+              <span class="creator-card__quote">“一个还想继续写故事的人。”</span>
+              <span class="creator-card__cta">点开以后会发生一点对话 <svg class="icon icon--small" aria-hidden="true"><use href="#icon-arrow"></use></svg></span>
+            </span>
+            <span class="creator-card__school">湖科大</span>
+          </button>
+        </section>
+
+        <section class="module" id="meetSection" aria-labelledby="meetTitle">
+          <header class="module-head">
+            <span class="module-no">04</span>
+            <div class="module-title">
+              <p class="eyebrow">线下约见</p>
+              <h2 id="meetTitle">等这间屋子再收拾收拾</h2>
+            </div>
+            <span class="status-pill">开发中</span>
+          </header>
+          <div class="meet-card">
+            <span class="meet-card__icon"><svg class="icon" aria-hidden="true"><use href="#icon-calendar"></use></svg></span>
+            <div>
+              <span class="meet-card__status">开发中</span>
+              <h3>线下约见</h3>
+              <p>等时间、地点和预约方式都准备好了，再把这张椅子搬出来。</p>
+            </div>
+            <button class="secondary-btn" type="button" disabled>敬请期待</button>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <span class="brand__mark brand__mark--small"><svg class="icon" aria-hidden="true"><use href="#icon-house"></use></svg></span>
+        <div>
+          <strong>why哥的情绪陪伴屋</strong>
+          <p>一个可以坐下来说话的小角落。</p>
+        </div>
+      </div>
+      <button class="footer-support" id="supportFooterBtn" type="button">
+        <svg class="icon icon--small" aria-hidden="true"><use href="#icon-heart"></use></svg>
+        需要真人支持
+      </button>
+    </div>
+    <section class="footer-policy" aria-label="免责声明">
+      <strong>免责声明</strong>
+      <p>本网页为湖科大学生个人前端创意演示项目，仅作为情绪陪伴交互体验，不能替代专业心理咨询服务。若有严重心理困扰，请联系学校心理中心或者专业心理医疗机构。</p>
+    </section>
+    <p class="footer-disclaimer">这不是心理咨询，不能替代专业帮助。若有立即危险，请拨打 120 / 110，或前往最近的急诊。</p>
+    <p class="footer-credit">由 why哥（湖科大 王浩宇）发起 · 初版测试 · 所有选择只留在你的浏览器</p>
+  </footer>
+
+  <dialog class="modal" id="supportDialog">
+    <div class="modal-card">
+      <button class="modal-close" type="button" data-close-dialog aria-label="关闭">
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+      <p class="eyebrow">如果此刻需要真人</p>
+      <h2>不用一个人扛。</h2>
+      <p class="modal-intro" id="supportIntro"></p>
+      <div class="hotline-list" id="supportHotlines"></div>
+      <div class="emergency-row" id="supportEmergency"></div>
+      <div class="campus-card">
+        <div>
+          <span class="campus-card__tag">校内资源</span>
+          <strong id="campusName">湖南科技大学心理健康教育中心</strong>
+          <p id="campusNote"></p>
+        </div>
+        <a class="text-btn" id="campusLink" href="https://xlzx.hnust.edu.cn/" target="_blank" rel="noopener noreferrer">
+          打开官网 <svg class="icon icon--small" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+        </a>
+      </div>
+      <p class="modal-fineprint" id="supportDisclaimer"></p>
+    </div>
+  </dialog>
+
+  <dialog class="modal modal--creator" id="creatorDialog">
+    <div class="modal-card creator-modal">
+      <button class="modal-close" type="button" data-close-dialog aria-label="关闭">
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+      <div class="creator-modal__head">
+        <span class="text-avatar text-avatar--dialog" aria-hidden="true">why</span>
+        <div>
+          <p class="eyebrow">创作者的小房间</p>
+          <h2>王浩宇</h2>
+        </div>
+        <span class="status-pill status-pill--live"><span class="online-dot"></span>在线</span>
+      </div>
+
+      <div class="creator-messages" id="creatorMessages" role="log" aria-live="polite" aria-label="与王浩宇的对话"></div>
+      <div class="typing hidden" id="creatorTyping" aria-label="王同志正在想">
+        <span></span><span></span><span></span>
+        <em class="typing__label">王同志正在想…</em>
+      </div>
+      <div class="creator-options" id="creatorOptions"></div>
+
+      <section class="creator-intro hidden" id="creatorIntro">
+        <div class="creator-intro__head">
+          <div>
+            <p class="eyebrow">个人介绍</p>
+            <h3>关于王浩宇</h3>
+          </div>
+          <span class="status-pill">还没填</span>
+        </div>
+        <p class="creator-intro__note" id="creatorIntroNote">随便点，反正都还没填。</p>
+        <div class="intro-grid" id="creatorIntroGrid"></div>
+        <div class="intro-placeholder hidden" id="creatorPlaceholder" aria-live="polite">
+          <span class="intro-placeholder__icon" aria-hidden="true">(￣o￣) zZ</span>
+          <p>王同志累了，还没填呢~（打哈欠）</p>
+        </div>
+        <button class="text-btn" type="button" data-close-dialog>下次再聊</button>
+      </section>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="runDialog">
+    <div class="modal-card">
+      <button class="modal-close" type="button" data-close-dialog aria-label="关闭">
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+      <p class="eyebrow">身体运动汇健康</p>
+      <h2>校园跑陪跑 · 预约说明</h2>
+      <span class="status-pill status-pill--accent">需提前预约</span>
+      <p class="modal-intro" id="runDialogNote"></p>
+      <ul class="run-detail-list" id="runDialogDetails"></ul>
+      <div class="run-dialog-tip">
+        <svg class="icon" aria-hidden="true"><use href="#icon-run"></use></svg>
+        <span>预约通道还在接通。等开放后，这里会出现可选时间和集合点。</span>
+      </div>
+      <button class="primary-btn" type="button" data-close-dialog>知道啦</button>
+    </div>
+  </dialog>
+
+  <dialog class="modal modal--confirm" id="resetDialog">
+    <div class="modal-card">
+      <p class="eyebrow">重新认识</p>
+      <h2>要回到门口，再走一遍吗？</h2>
+      <p class="modal-intro">当前昵称、性别和性格选择会被清空，只影响这个浏览器。why哥会重新问你那三个问题。</p>
+      <div class="modal-actions">
+        <button class="text-btn" id="resetCancelBtn" type="button">再想想</button>
+        <button class="primary-btn primary-btn--danger" id="resetConfirmBtn" type="button">重新开始</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>
