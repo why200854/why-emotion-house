@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#FBE7EC">
+  <meta name="description" content="why哥的情绪陪伴屋 · 失恋情境交互：陪 Why 走过五天，在故事里看见心动、失去与成长。">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; media-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+  <title>失恋情境交互 · why哥的情绪陪伴屋</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/breakup.css">
+</head>
+<body class="breakup-body">
+  <a class="skip-link" href="#storyView">跳到故事内容</a>
+
+  <svg class="svg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="bu-heart" viewBox="0 0 24 24">
+      <path d="M12 21S3.8 16.1 3.8 9.7A4.2 4.2 0 0 1 12 7.1a4.2 4.2 0 0 1 8.2 2.6C20.2 16.1 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="bu-heart-fill" viewBox="0 0 24 24">
+      <path d="M12 21S3.8 16.1 3.8 9.7A4.2 4.2 0 0 1 12 7.1a4.2 4.2 0 0 1 8.2 2.6C20.2 16.1 12 21 12 21Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="bu-rose" viewBox="0 0 64 64">
+      <path d="M32 43c-8 0-15-6-15-14 0-6 4-11 10-11 3 0 5 1 7 4 2-3 4-4 7-4 6 0 10 5 10 11 0 8-7 14-15 14Z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M32 39c-5 0-9-4-9-9 0-4 3-7 7-7 2 0 4 1 5 3 1-2 3-3 5-3 4 0 6 3 6 7 0 5-4 9-9 9Z" fill="none" stroke="currentColor" stroke-width="1.4"/>
+      <path d="M32 43v10M32 51c-6 0-9-3-10-8 5 0 8 2 10 8ZM32 49c5 0 8-2 9-7-5 0-8 2-9 7Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="bu-house" viewBox="0 0 24 24">
+      <path d="M4 10.3 12 4l8 6.3V20H4V10.3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M9.5 20v-5.5h5V20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="bu-arrow" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="bu-spark" viewBox="0 0 24 24">
+      <path d="M12 3c.7 4.8 2.2 6.3 7 7-4.8.7-6.3 2.2-7 7-.7-4.8-2.2-6.3-7-7 4.8-.7 6.3-2.2 7-7Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+
+  <div class="ambient-art" aria-hidden="true">
+    <span class="ambient-art__wash ambient-art__wash--one"></span>
+    <span class="ambient-art__wash ambient-art__wash--two"></span>
+    <svg class="deco-heart deco-heart--one"><use href="#bu-heart-fill"></use></svg>
+    <svg class="deco-heart deco-heart--two"><use href="#bu-heart-fill"></use></svg>
+    <svg class="deco-heart deco-heart--three"><use href="#bu-heart"></use></svg>
+    <svg class="deco-rose deco-rose--one"><use href="#bu-rose"></use></svg>
+    <svg class="deco-rose deco-rose--two"><use href="#bu-rose"></use></svg>
+    <span class="falling-petal falling-petal--one"></span>
+    <span class="falling-petal falling-petal--two"></span>
+    <span class="falling-petal falling-petal--three"></span>
+    <span class="falling-petal falling-petal--four"></span>
+  </div>
+
+  <header class="scene-topbar">
+    <a class="scene-brand" href="index.html">
+      <span class="scene-brand__mark"><svg class="icon" aria-hidden="true"><use href="#bu-house"></use></svg></span>
+      <span>
+        <strong>why哥的情绪陪伴屋</strong>
+        <small>失恋情境交互 · 情景故事体验</small>
+      </span>
+    </a>
+    <div class="scene-topbar__actions">
+      <span class="duration-pill">8–10 分钟</span>
+      <a class="back-link" href="index.html">返回主界面</a>
+    </div>
+  </header>
+
+  <main class="scene-main">
+    <section class="story-view" id="storyView" aria-label="失恋情境故事">
+      <div class="story-visual">
+        <div class="day-meta">
+          <span class="day-meta__day" id="dayLabel">第 1 天</span>
+          <span class="day-meta__dot"></span>
+          <span id="sceneTime">23:47</span>
+          <span class="day-meta__dot"></span>
+          <span id="scenePlace">宿舍楼下</span>
+        </div>
+
+        <div class="heart-stage heart-stage--intact" id="heartStage">
+          <span class="heart-spark heart-spark--one"></span>
+          <span class="heart-spark heart-spark--two"></span>
+          <svg class="heart-svg" viewBox="0 0 120 112" role="img" aria-label="一颗裂开后又慢慢修复的心">
+            <defs>
+              <clipPath id="heart-left"><rect x="0" y="0" width="60" height="112"></rect></clipPath>
+              <clipPath id="heart-right"><rect x="60" y="0" width="60" height="112"></rect></clipPath>
+              <filter id="heart-glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="3" result="blur"></feGaussianBlur>
+                <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+              </filter>
+              <linearGradient id="heart-fill-story" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#e889a1"></stop>
+                <stop offset="0.55" stop-color="#d86582"></stop>
+                <stop offset="1" stop-color="#b84465"></stop>
+              </linearGradient>
+            </defs>
+            <g class="heart-half heart-half--left" clip-path="url(#heart-left)">
+              <path d="M60 102 C28 78 12 60 12 39 C12 23 24 13 38 13 C47 13 55 18 60 27 C65 18 73 13 82 13 C96 13 108 23 108 39 C108 60 92 78 60 102Z" fill="url(#heart-fill-story)" filter="url(#heart-glow)"></path>
+            </g>
+            <g class="heart-half heart-half--right" clip-path="url(#heart-right)">
+              <path d="M60 102 C28 78 12 60 12 39 C12 23 24 13 38 13 C47 13 55 18 60 27 C65 18 73 13 82 13 C96 13 108 23 108 39 C108 60 92 78 60 102Z" fill="url(#heart-fill-story)" filter="url(#heart-glow)"></path>
+            </g>
+            <path class="heart-crack" d="M61 18 L55 37 L64 50 L57 66 L65 82" fill="none" stroke="#fff5f4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <p class="heart-caption" id="heartCaption">有些心碎，是从一句“我们分开吧”开始的。</p>
+        </div>
+
+        <div class="day-progress" id="dayProgress" aria-label="故事进度"></div>
+        <p class="scene-note" id="sceneNote">夜风把树影吹得很轻。</p>
+      </div>
+
+      <div class="dialogue-card">
+        <div class="dialogue-head">
+          <span class="text-avatar text-avatar--why" aria-hidden="true">why</span>
+          <div class="dialogue-head__copy">
+            <strong>Why</strong>
+            <small id="speakerState">失恋第 1 天 · 正在难过</small>
+          </div>
+          <span class="online-state"><i></i>在线</span>
+        </div>
+
+        <div class="dialogue-messages" id="dialogueMessages" role="log" aria-live="polite" aria-label="Why 的对话"></div>
+
+        <div class="typing hidden" id="typing" aria-label="Why 正在打字">
+          <span></span><span></span><span></span>
+          <em>Why 正在打字…</em>
+        </div>
+
+        <div class="choices" id="choices" role="group" aria-label="选择你的回应"></div>
+
+        <button class="next-btn hidden" id="nextBtn" type="button">
+          <span>继续</span>
+          <svg class="icon icon--small" aria-hidden="true"><use href="#bu-arrow"></use></svg>
+        </button>
+
+        <p class="dialogue-hint">你是这场对话的见证人。你的选择不会改变故事的终点，但会改变他走过的路。</p>
+      </div>
+    </section>
+
+    <section class="monologue-view hidden" id="monologueView" aria-label="王同志的道理独白">
+      <div class="monologue-card">
+        <div class="monologue-head">
+          <span class="text-avatar text-avatar--wang" aria-hidden="true">why</span>
+          <div>
+            <strong>王同志</strong>
+            <small>创作者 / 旁白</small>
+          </div>
+          <span class="monologue-head__tag">说给 Why，也说给你</span>
+        </div>
+        <p class="monologue-kicker" id="monologueKicker">给 Why，也给正在看的你</p>
+        <h2 id="monologueTitle">青春之爱，当与成长同行</h2>
+        <div class="monologue-text" id="monologueText" role="log" aria-live="polite"></div>
+        <div class="monologue-footer">
+          <span id="monologueProgress">01 / 07</span>
+          <button class="next-btn" id="monologueNext" type="button">
+            <span>继续</span>
+            <svg class="icon icon--small" aria-hidden="true"><use href="#bu-arrow"></use></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing-view hidden" id="closingView" aria-label="故事闭幕">
+      <div class="closing-petals" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="closing-heart" aria-hidden="true">
+        <svg viewBox="0 0 120 112">
+          <defs>
+            <linearGradient id="heart-fill-closing" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#f0a4b8"></stop>
+              <stop offset="0.55" stop-color="#d96887"></stop>
+              <stop offset="1" stop-color="#b84465"></stop>
+            </linearGradient>
+          </defs>
+          <path d="M60 102 C28 78 12 60 12 39 C12 23 24 13 38 13 C47 13 55 18 60 27 C65 18 73 13 82 13 C96 13 108 23 108 39 C108 60 92 78 60 102Z" fill="url(#heart-fill-closing)"></path>
+        </svg>
+      </div>
+      <p class="closing-eyebrow" id="closingEyebrow">第 5 天 · 清晨</p>
+      <h2 id="closingTitle">这一页，先翻到这里。</h2>
+      <div class="closing-lines" id="closingLines"></div>
+      <p class="closing-thanks" id="closingThanks">谢谢你愿意做这个见证人。</p>
+      <button class="leave-btn hidden" id="leaveBtn" type="button">离开</button>
+      <p class="closing-note">你会回到 why哥的情绪陪伴屋。</p>
+    </section>
+  </main>
+
+  <div class="day-banner hidden" id="dayBanner" aria-live="polite">
+    <span class="day-banner__line"></span>
+    <p class="day-banner__day" id="bannerDay">第 1 天</p>
+    <p class="day-banner__time" id="bannerTime">23:47</p>
+    <p class="day-banner__place" id="bannerPlace">宿舍楼下</p>
+    <span class="day-banner__rose" aria-hidden="true"><svg class="icon"><use href="#bu-rose"></use></svg></span>
+  </div>
+
+  <footer class="scene-disclaimer">
+    <strong>免责声明</strong>
+    <span id="disclaimerText">本网页为湖科大学生个人前端创意演示项目，仅作为情景故事体验与科普演示，不是心理咨询，不能替代专业心理帮助。若有严重心理困扰，请联系学校心理中心或者专业心理医疗机构。</span>
+  </footer>
+
+  <script src="js/breakup-data.js" defer></script>
+  <script src="js/breakup.js" defer></script>
+</body>
+</html>
