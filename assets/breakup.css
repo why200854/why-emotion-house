@@ -766,6 +766,30 @@ button:disabled {
   animation: messageIn 0.4s var(--ease) both;
 }
 
+.stage-direction {
+  align-self: flex-start;
+  max-width: 86%;
+  margin: 0 0 0 38px;
+  color: var(--ink-3);
+  font-size: 11px;
+  font-style: italic;
+  line-height: 1.7;
+  animation: messageIn 0.3s var(--ease) both;
+}
+
+.message__bubble.is-typing::after,
+.stage-direction.is-typing::after {
+  content: "▍";
+  display: inline-block;
+  margin-left: 1px;
+  color: var(--rose);
+  animation: cursorBlink 0.85s steps(1) infinite;
+}
+
+@keyframes cursorBlink {
+  50% { opacity: 0; }
+}
+
 .typing {
   display: flex;
   align-items: center;
@@ -1054,45 +1078,52 @@ button:disabled {
   letter-spacing: -0.015em;
 }
 
-.monologue-text {
+.monologue-stage {
+  display: flex;
   flex: 1;
-  min-height: 120px;
-  margin-top: 22px;
-  padding-right: 5px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(207, 96, 127, 0.32) transparent;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12px, #000 100%);
-  mask-image: linear-gradient(to bottom, transparent 0, #000 12px, #000 100%);
-}
-
-.monologue-text::-webkit-scrollbar {
-  width: 5px;
-}
-
-.monologue-text::-webkit-scrollbar-thumb {
-  background: rgba(207, 96, 127, 0.32);
-  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  margin-top: 16px;
+  padding: 12px 8px;
+  overflow: hidden;
 }
 
 .monologue-sentence {
+  max-width: 780px;
+  margin: 0 auto;
   color: var(--ink);
   font-family: var(--font-serif);
-  font-size: clamp(21px, 2vw, 25px);
-  font-weight: 600;
-  line-height: 1.8;
-  animation: paragraphIn 0.6s var(--ease) both;
+  font-size: clamp(27px, 3vw, 38px);
+  font-weight: 700;
+  line-height: 1.65;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
 }
 
-.monologue-sentence + .monologue-sentence {
-  margin-top: 11px;
-  padding-top: 11px;
-  border-top: 1px solid rgba(167, 61, 94, 0.1);
+.monologue-sentence.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.monologue-sentence.is-out {
+  opacity: 0;
+  transform: translateY(-12px);
 }
 
 .monologue-sentence--accent {
   color: var(--rose-deep);
-  font-weight: 700;
+}
+
+.monologue-sentence--direction {
+  color: var(--ink-3);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.8;
 }
 
 .monologue-footer {
@@ -1614,9 +1645,19 @@ body.monologue-mode .monologue-view {
   }
 
   .monologue-sentence {
-    font-size: 19px;
-    font-weight: 600;
-    line-height: 1.8;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.7;
+  }
+
+  .monologue-sentence--direction {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .monologue-stage {
+    min-height: 220px;
+    padding: 8px 2px;
   }
 
   .monologue-footer {

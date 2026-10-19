@@ -12,7 +12,8 @@
     nextAction: null,
     monoIndex: 0,
     monoBusy: false,
-    monoLocked: false
+    monoDone: false,
+    monoTimer: null
   };
 
   const dom = {};
@@ -100,13 +101,44 @@
     if (on) scrollMessages();
   }
 
-  function addNpcLine(text) {
+  async function addNpcLine(text, token) {
+    const value = String(text || '');
+    const isDirection = /^（[^）]+）$/.test(value.trim());
+
+    if (isDirection) {
+      const direction = make('p', 'stage-direction');
+      dom.dialogueMessages.appendChild(direction);
+      if (window.WhygeTypewriter) {
+        await window.WhygeTypewriter.type(direction, value, {
+          speed: 1.1,
+          cancelled: () => token !== state.token,
+          onChar: scrollMessages
+        });
+      } else {
+        direction.textContent = value;
+      }
+      scrollMessages();
+      return token === state.token;
+    }
+
     const row = make('div', 'message');
     row.appendChild(make('span', 'message__who', 'why'));
-    const bubble = make('div', 'message__bubble', text);
+    const bubble = make('div', 'message__bubble');
     row.appendChild(bubble);
     dom.dialogueMessages.appendChild(row);
     scrollMessages();
+
+    if (window.WhygeTypewriter) {
+      await window.WhygeTypewriter.type(bubble, value, {
+        speed: 1.15,
+        cancelled: () => token !== state.token,
+        onChar: scrollMessages
+      });
+    } else {
+      bubble.textContent = value;
+    }
+    scrollMessages();
+    return token === state.token;
   }
 
   function addUserLine(text) {
@@ -133,8 +165,9 @@
       await wait(thinkTime(lines[i]));
       if (token !== state.token) return false;
       setTyping(false);
-      addNpcLine(lines[i]);
-      await wait(140);
+      const typed = await addNpcLine(lines[i], token);
+      if (!typed) return false;
+      await wait(220);
       if (token !== state.token) return false;
     }
     return true;
@@ -280,7 +313,7 @@
       await wait(thinkTime(DATA.farewell.followUp));
       if (token !== state.token) return;
       setTyping(false);
-      addNpcLine(DATA.farewell.followUp);
+      await addNpcLine(DATA.farewell.followUp, token);
       state.nextAction = 'startMonologue';
       dom.nextBtn.querySelector('span').textContent = '听他讲讲';
     } else {
@@ -355,7 +388,8 @@
     state.token += 1;
     state.monoIndex = 0;
     state.monoBusy = false;
-    state.monoLocked = false;
+    state.monoDone = false;
+    window.clearTimeout(state.monoTimer);
     window.scrollTo(0, 0);
     document.body.classList.add('monologue-mode');
     dom.storyView.classList.add('hidden');
@@ -364,34 +398,52 @@
     dom.monologueKicker.textContent = DATA.monologue.kicker;
     dom.monologueTitle.textContent = DATA.monologue.title;
     dom.monologueText.innerHTML = '';
-    dom.monologueNext.querySelector('span').textContent = '继续';
+    dom.monologueNext.classList.add('hidden');
+    dom.monologueNext.querySelector('span').textContent = '听完了';
     renderMonologueSentence(0);
   }
 
   function renderMonologueSentence(index) {
     const sentences = DATA.monologue.sentences;
     if (index >= sentences.length) {
-      showClosing();
+      finishMonologue();
       return;
     }
 
+    state.monoIndex = index;
+    dom.monologueText.innerHTML = '';
     const sentence = make('p', 'monologue-sentence', sentences[index]);
     if (index === sentences.length - 1) sentence.classList.add('monologue-sentence--accent');
+    if (/^（.*）$/.test(sentences[index].trim())) sentence.classList.add('monologue-sentence--direction');
     dom.monologueText.appendChild(sentence);
     dom.monologueProgress.textContent = String(index + 1).padStart(2, '0') + ' / ' + String(sentences.length).padStart(2, '0');
-    dom.monologueNext.querySelector('span').textContent = index === sentences.length - 1 ? '听完了' : '继续';
-    dom.monologueText.scrollTop = dom.monologueText.scrollHeight;
+
+    window.requestAnimationFrame(() => sentence.classList.add('is-in'));
+    const hold = Math.max(2200, Math.min(3800, 1100 + sentences[index].length * 50));
+    window.clearTimeout(state.monoTimer);
+    state.monoTimer = window.setTimeout(() => {
+      if (index + 1 >= sentences.length) {
+        finishMonologue();
+        return;
+      }
+      sentence.classList.remove('is-in');
+      sentence.classList.add('is-out');
+      state.monoTimer = window.setTimeout(() => {
+        renderMonologueSentence(index + 1);
+      }, 560);
+    }, hold);
+  }
+
+  function finishMonologue() {
+    state.monoDone = true;
+    dom.monologueNext.querySelector('span').textContent = '听完了';
+    dom.monologueNext.classList.remove('hidden');
   }
 
   function advanceMonologue() {
-    if (state.monoBusy) return;
-    const sentences = DATA.monologue.sentences;
-    if (state.monoIndex >= sentences.length - 1) {
-      showClosing();
-      return;
-    }
-    state.monoIndex += 1;
-    renderMonologueSentence(state.monoIndex);
+    if (!state.monoDone) return;
+    window.clearTimeout(state.monoTimer);
+    showClosing();
   }
 
   function styleClosingLine() {
@@ -415,7 +467,7 @@
   }
 
   function showClosing() {
-    state.monoLocked = true;
+    window.clearTimeout(state.monoTimer);
     window.scrollTo(0, 0);
     document.body.classList.remove('monologue-mode');
     dom.storyView.classList.add('hidden');

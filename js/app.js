@@ -10,7 +10,10 @@
       branch: null,
       step: 1,
       busy: false,
-      token: 0
+      token: 0,
+      prologueIndex: 0,
+      prologueDone: false,
+      prologueTimer: null
     },
     creator: {
       busy: false,
@@ -148,6 +151,10 @@
     dom.entryChoices = $('#entryChoices');
     dom.entryAfter = $('#entryAfter');
     dom.entryAfterText = $('#entryAfterText');
+    dom.entryPrologue = $('#entryPrologue');
+    dom.entryMonologue = $('#entryMonologue');
+    dom.entryMonologueProgress = $('#entryMonologueProgress');
+    dom.entryContinueBtn = $('#entryContinueBtn');
     dom.profileForm = $('#profileForm');
     dom.formPrompt = $('#formPrompt');
     dom.formHint = $('#formHint');
@@ -179,6 +186,12 @@
     dom.runDialog = $('#runDialog');
     dom.runDialogNote = $('#runDialogNote');
     dom.runDialogDetails = $('#runDialogDetails');
+    dom.runDialogHint = $('#runDialogHint');
+    dom.meetBtn = $('#meetBtn');
+    dom.meetDialog = $('#meetDialog');
+    dom.meetDialogNote = $('#meetDialogNote');
+    dom.meetDialogDetails = $('#meetDialogDetails');
+    dom.meetDialogHint = $('#meetDialogHint');
 
     dom.creatorDialog = $('#creatorDialog');
     dom.creatorMessages = $('#creatorMessages');
@@ -218,6 +231,7 @@
     renderRunOthers();
     renderSupport();
     renderRunDialog();
+    renderMeetDialog();
     renderCreatorIntroCards();
     renderCreatorOptionsForGender('female');
   }
@@ -240,9 +254,11 @@
   }
 
   function scrollEntryBottom() {
-    const form = dom.profileForm;
-    if (!form.classList.contains('hidden')) {
-      form.scrollIntoView({
+    const target = !dom.profileForm.classList.contains('hidden')
+      ? dom.profileForm
+      : (!dom.entryPrologue.classList.contains('hidden') ? dom.entryPrologue : null);
+    if (target) {
+      target.scrollIntoView({
         behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
         block: 'nearest'
       });
@@ -259,11 +275,27 @@
     }
 
     const body = make('div', 'vn-message__body');
-    body.appendChild(make('div', 'vn-message__bubble', text));
+    const bubble = make('div', 'vn-message__bubble', opts.type ? '' : text);
+    body.appendChild(bubble);
     if (opts.note) body.appendChild(make('span', 'vn-message__note', opts.note));
     row.appendChild(body);
     dom.entryMessages.appendChild(row);
     return row;
+  }
+
+  async function typeEntryBubble(row, text, token) {
+    const bubble = row.querySelector('.vn-message__bubble');
+    if (!bubble || !window.WhygeTypewriter) {
+      if (bubble) bubble.textContent = text;
+      return true;
+    }
+    return window.WhygeTypewriter.type(bubble, text, {
+      speed: 1.05,
+      cancelled: () => token !== state.onboarding.token,
+      onChar: () => {
+        dom.entryMessages.scrollTop = dom.entryMessages.scrollHeight;
+      }
+    });
   }
 
   function renderEntryChoices() {
@@ -307,7 +339,9 @@
     await wait(thinkDelay(branch.reaction, 260));
     if (token !== state.onboarding.token) return;
     setEntryTyping(false);
-    addEntryMessage('npc', branch.reaction);
+    const reactionRow = addEntryMessage('npc', branch.reaction, { type: true });
+    await typeEntryBubble(reactionRow, branch.reaction, token);
+    if (token !== state.onboarding.token) return;
 
     if (branch.pauseBeforeLines) {
       setEntryTyping(true);
@@ -321,12 +355,76 @@
       await wait(thinkDelay(branch.lines[i], i === 0 ? 180 : 90));
       if (token !== state.onboarding.token) return;
       setEntryTyping(false);
-      addEntryMessage('npc', branch.lines[i]);
+      const row = addEntryMessage('npc', branch.lines[i], { type: true });
+      await typeEntryBubble(row, branch.lines[i], token);
+      if (token !== state.onboarding.token) return;
     }
 
     if (token !== state.onboarding.token) return;
-    showProfileForm(branch);
+    showEntryPrologue(branch);
+  }
+
+  function showEntryPrologue(branch) {
+    state.onboarding.busy = true;
+    state.onboarding.prologueIndex = 0;
+    state.onboarding.prologueDone = false;
+    window.clearTimeout(state.onboarding.prologueTimer);
+    dom.entryChoices.innerHTML = '';
+    dom.entryMode.textContent = '进门前 · 听我说';
+    dom.entryAfter.classList.add('hidden');
+    dom.profileForm.classList.add('hidden');
+    dom.entryPrologue.classList.remove('hidden');
+    dom.entryContinueBtn.classList.add('hidden');
+    dom.entryContinueBtn.querySelector('span').textContent = D.ONBOARDING.prologue.button;
+    setEntryStep(1);
+    renderEntryPrologueSentence(0);
+    scrollEntryBottom();
+  }
+
+  function renderEntryPrologueSentence(index) {
+    const sentences = D.ONBOARDING.prologue.sentences;
+    const token = state.onboarding.token;
+    if (index >= sentences.length) {
+      finishEntryPrologue();
+      return;
+    }
+
+    state.onboarding.prologueIndex = index;
+    dom.entryMonologue.innerHTML = '';
+    const sentence = make('p', 'entry-monologue-sentence', sentences[index]);
+    if (index === sentences.length - 1) sentence.classList.add('entry-monologue-sentence--accent');
+    if (/^（.*）$/.test(sentences[index].trim())) sentence.classList.add('entry-monologue-sentence--direction');
+    dom.entryMonologue.appendChild(sentence);
+    dom.entryMonologueProgress.textContent = String(index + 1).padStart(2, '0') + ' / ' + String(sentences.length).padStart(2, '0');
+
+    window.requestAnimationFrame(() => sentence.classList.add('is-in'));
+    const hold = Math.max(2200, Math.min(3800, 1100 + sentences[index].length * 50));
+    window.clearTimeout(state.onboarding.prologueTimer);
+    state.onboarding.prologueTimer = window.setTimeout(() => {
+      if (index + 1 >= sentences.length) {
+        finishEntryPrologue();
+        return;
+      }
+      sentence.classList.remove('is-in');
+      sentence.classList.add('is-out');
+      state.onboarding.prologueTimer = window.setTimeout(() => {
+        if (token !== state.onboarding.token) return;
+        renderEntryPrologueSentence(index + 1);
+      }, 560);
+    }, hold);
+  }
+
+  function finishEntryPrologue() {
+    state.onboarding.prologueDone = true;
     state.onboarding.busy = false;
+    dom.entryContinueBtn.classList.remove('hidden');
+  }
+
+  function handleEntryContinue() {
+    if (!state.onboarding.prologueDone) return;
+    window.clearTimeout(state.onboarding.prologueTimer);
+    dom.entryPrologue.classList.add('hidden');
+    showProfileForm(state.onboarding.branch);
   }
 
   function showProfileForm(branch) {
@@ -463,6 +561,9 @@
     dom.userChip.hidden = true;
     dom.resetBtn.hidden = true;
     dom.profileForm.classList.add('hidden');
+    dom.entryPrologue.classList.add('hidden');
+    window.clearTimeout(state.onboarding.prologueTimer);
+    state.onboarding.prologueDone = false;
     dom.entryAfter.classList.add('hidden');
     dom.entryAfterText.textContent = '';
     dom.entryMode.textContent = '第一次见面';
@@ -542,9 +643,19 @@
 
   function renderRunDialog() {
     dom.runDialogNote.textContent = D.RUN.dialog.note;
+    dom.runDialogHint.textContent = D.RUN.dialog.contactHint;
     dom.runDialogDetails.innerHTML = '';
     D.RUN.dialog.details.forEach((detail) => {
       dom.runDialogDetails.appendChild(make('li', '', detail));
+    });
+  }
+
+  function renderMeetDialog() {
+    dom.meetDialogNote.textContent = D.MEET.description;
+    dom.meetDialogHint.textContent = D.MEET.contactHint;
+    dom.meetDialogDetails.innerHTML = '';
+    D.MEET.details.forEach((detail) => {
+      dom.meetDialogDetails.appendChild(make('li', '', detail));
     });
   }
 
@@ -773,6 +884,10 @@
     openDialog(dom.runDialog);
   }
 
+  function openMeetDialog() {
+    openDialog(dom.meetDialog);
+  }
+
   function bindEvents() {
     dom.brandHome.addEventListener('click', () => {
       if (state.profile) {
@@ -783,7 +898,9 @@
     dom.supportBtn.addEventListener('click', openSupport);
     dom.supportFooterBtn.addEventListener('click', openSupport);
     dom.bookRunBtn.addEventListener('click', openRunDialog);
+    dom.meetBtn.addEventListener('click', openMeetDialog);
     dom.openCreator.addEventListener('click', openCreator);
+    dom.entryContinueBtn.addEventListener('click', handleEntryContinue);
     dom.resetBtn.addEventListener('click', () => openDialog(dom.resetDialog));
 
     dom.profileForm.addEventListener('submit', handleProfileSubmit);

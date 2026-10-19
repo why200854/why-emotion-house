@@ -176,11 +176,28 @@
 
             <div class="dialogue-choices" id="entryChoices" role="group" aria-label="选择你的回应"></div>
 
+            <div class="entry-prologue hidden" id="entryPrologue">
+              <div class="entry-prologue__head">
+                <span class="text-avatar text-avatar--dialog" aria-hidden="true">why</span>
+                <div>
+                  <strong>王同志</strong>
+                  <small>进门前 · 说两句</small>
+                </div>
+                <span class="entry-prologue__progress" id="entryMonologueProgress">01 / 05</span>
+              </div>
+              <div class="entry-monologue-stage" id="entryMonologue" role="log" aria-live="polite" aria-label="王同志进门前的话"></div>
+              <button class="primary-btn primary-btn--wide hidden" id="entryContinueBtn" type="button">
+                <span>继续，认识一下</span>
+                <svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+              </button>
+            </div>
+
             <form class="profile-form hidden" id="profileForm" novalidate>
               <div class="profile-form__head">
                 <p class="eyebrow">认识你</p>
                 <h2 id="formPrompt">先告诉我，我该怎么叫你？</h2>
                 <p id="formHint">选一个你愿意被叫的名字就好，不用写真名。</p>
+                <p class="form-about-guide">想先了解作者和项目？可以先看 <a href="about.html" target="_blank" rel="noopener">个人介绍板块</a>，里面有联系方式。</p>
               </div>
 
               <fieldset class="form-field">
@@ -313,7 +330,7 @@
           <div class="run-card">
             <div class="run-card__copy">
               <div class="run-badges">
-                <span class="status-pill status-pill--accent">需提前预约</span>
+                <span class="status-pill status-pill--accent">可预约</span>
                 <span class="run-distance">校园跑 · 夜跑 · 慢跑</span>
               </div>
               <h3>校园跑陪跑</h3>
@@ -324,7 +341,7 @@
                   <span>预约陪跑</span>
                   <svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg>
                 </button>
-                <span class="run-actions__note">预约通道正在接通</span>
+                <span class="run-actions__note">先看个人介绍，加微信/QQ 预约</span>
               </div>
             </div>
             <div class="run-card__art" aria-hidden="true">
@@ -386,18 +403,18 @@
             <span class="module-no">04</span>
             <div class="module-title">
               <p class="eyebrow">线下约见</p>
-              <h2 id="meetTitle">等这间屋子再收拾收拾</h2>
+              <h2 id="meetTitle">想见面，就先说一声</h2>
             </div>
-            <span class="status-pill">开发中</span>
+            <span class="status-pill">可联系</span>
           </header>
           <div class="meet-card">
             <span class="meet-card__icon"><svg class="icon" aria-hidden="true"><use href="#icon-calendar"></use></svg></span>
             <div>
-              <span class="meet-card__status">开发中</span>
+              <span class="meet-card__status">可联系</span>
               <h3>线下约见</h3>
-              <p>等时间、地点和预约方式都准备好了，再把这张椅子搬出来。</p>
+              <p>想线下聊聊、一起走走，可以先通过个人介绍里的联系方式，和王同志约一个双方都方便的时间。</p>
             </div>
-            <button class="secondary-btn" type="button" disabled>敬请期待</button>
+            <button class="secondary-btn" id="meetBtn" type="button">查看约见方式</button>
           </div>
         </section>
       </div>
@@ -423,7 +440,7 @@
       <p>本网页为学生个人创意情景交互演示项目，仅用于情绪故事体验、心理科普展示，不能替代专业心理咨询服务。如果有严重心理困扰，请联系学校心理中心或者专业心理医疗机构。</p>
     </section>
     <p class="footer-disclaimer">这不是心理咨询，不能替代专业帮助。若有立即危险，请拨打 120 / 110，或前往最近的急诊。</p>
-    <p class="footer-credit">由 why哥（湖科大 王浩宇）发起 · 初版测试 · 所有选择只留在你的浏览器</p>
+    <p class="footer-credit">由 why哥（湖科大 王浩宇）发起 · 初版测试 · 所有选择只留在你的浏览器 · <a href="about.html" target="_blank" rel="noopener">个人介绍</a></p>
   </footer>
 
   <dialog class="modal" id="supportDialog">
@@ -483,7 +500,10 @@
         <p class="creator-intro__note" id="creatorIntroNote">补充：项目会持续定期更新。</p>
         <div class="intro-grid" id="creatorIntroGrid"></div>
         <div class="intro-contact" id="creatorContact" aria-label="王浩宇的联系方式"></div>
-        <button class="text-btn" type="button" data-close-dialog>下次再聊</button>
+        <div class="creator-intro__links">
+          <a class="text-btn" href="about.html" target="_blank" rel="noopener">查看完整个人介绍</a>
+          <button class="text-btn" type="button" data-close-dialog>下次再聊</button>
+        </div>
       </section>
     </div>
   </dialog>
@@ -495,14 +515,34 @@
       </button>
       <p class="eyebrow">身体运动汇健康</p>
       <h2>校园跑陪跑 · 预约说明</h2>
-      <span class="status-pill status-pill--accent">需提前预约</span>
+      <span class="status-pill status-pill--accent">可预约</span>
       <p class="modal-intro" id="runDialogNote"></p>
       <ul class="run-detail-list" id="runDialogDetails"></ul>
       <div class="run-dialog-tip">
         <svg class="icon" aria-hidden="true"><use href="#icon-run"></use></svg>
-        <span>预约通道还在接通。等开放后，这里会出现可选时间和集合点。</span>
+        <span id="runDialogHint">请先通过个人介绍里的联系方式联系，备注“校园跑”，确认时间后再出门。</span>
       </div>
-      <button class="primary-btn" type="button" data-close-dialog>知道啦</button>
+      <a class="primary-btn" href="about.html" target="_blank" rel="noopener">查看个人介绍和联系方式</a>
+      <button class="text-btn" type="button" data-close-dialog>先看看</button>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="meetDialog">
+    <div class="modal-card">
+      <button class="modal-close" type="button" data-close-dialog aria-label="关闭">
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+      <p class="eyebrow">线下约见</p>
+      <h2>想见面，就先说一声</h2>
+      <span class="status-pill status-pill--accent">需提前联系</span>
+      <p class="modal-intro" id="meetDialogNote"></p>
+      <ul class="run-detail-list" id="meetDialogDetails"></ul>
+      <div class="run-dialog-tip">
+        <svg class="icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>
+        <span id="meetDialogHint"></span>
+      </div>
+      <a class="primary-btn" href="about.html" target="_blank" rel="noopener">查看个人介绍和联系方式</a>
+      <button class="text-btn" type="button" data-close-dialog>先不约</button>
     </div>
   </dialog>
 
@@ -520,6 +560,7 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+  <script src="js/typewriter.js" defer></script>
   <script src="js/data.js" defer></script>
   <script src="js/app.js" defer></script>
 </body>
